@@ -1,6 +1,6 @@
 @extends("layout.dashboard")
 @section('title')
-Doctor - index
+Doctors - index
 @endsection
 
 @section('content')
@@ -10,41 +10,49 @@ Doctor - index
 
     <div class="card">
 
+<x-alert type="success" />
+<x-alert type="info" />
+<x-alert type="danger" />
         <div class="card-body">
-            <h4 class="card-title">Inverse table</h4>
-            <a class="nav-link btn btn-success create-new-button" id="createbuttonDropdown" data-bs-toggle="dropdown" aria-expanded="false" href="{{ route('doctors.create') }}">Add Department</a>
-
+            <h4 class="card-title">Doctors Table</h4>
+            <div class="d-grid gap-2 col-6 mx-auto">
+            <a class="nav-link btn btn-outline-success create-new-button" id="createbuttonDropdown"  aria-expanded="false" href="{{ route('doctors.create') }}">
+                 <i class="mdi mdi-account-plus"></i> <span>Add Doctors</span>
+            </a>
+            </div>
             </p>
             <div class="table-responsive">
                 <table class="table table-dark">
                     <thead>
                         <tr>
-                            <th> Name Patient</th>
-                            <th> Birthday </th>
+                            <th> Name Doctror</th>
+                            <td>Name Department</td>
+                            <th> discription </th>
                             <th> Gander </th>
-                            <th> Email </th>
-                            <th> Number Phone </th>
-                            <th> Satting </th>
+                            <th> Specialization </th>
+                            <th>email </th>
+                            <th  > Satting </th>
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse ($patients as $patient)
+                        @forelse ($doctors as $doctor)
                         <tr>
-                            <td> {{ $patient->name }} </td>
-                            <td>{{$patient->birthday }}</td>
-                            <td> {{ $patient->gander }}</td>
-                            <td> {{ $patient->email }}</td>
-                            <td> {{ $patient->number_phone }}</td>
-                            <td>
-                                <a href="{{ route('patient.edit',$patient->id) }}" class="btn btn-success">Edit</a>
-                            </td>
+                            <td> {{ $doctor->name }} </td>
+                            <td><a href="{{ route('departemnts.index') }}">{{ $doctor->department->name }}</a></td>
+                            <td>{{$doctor->discription }}</td>
+                            <td> {{ $doctor->gender}}</td>
+                            <td> {{ $doctor->Specialization }}</td>
+                            <td> {{ $doctor->email }}</td>
+                             <td >
+                             <a href="{{ route('doctors.edit',$doctor->id) }}" class="btn btn-success m-1">
+                                <i class="mdi mdi-auto-fix"></i>
+                             </a>
 
-                            <td>
-                                <form action="{{ route('patient.destroy', $patient->id) }}" method="post">
+                                <form action="{{ route('doctors.destroy', $doctor->id) }}" method="post" class="m-1">
                                     @csrf
                                     @method('DELETE')
-                                    <Button type="submit" class="btn btn-danger">
-                                        Delete
+                                    <Button type="submit" class="btn btn-danger ">
+                                        <i class="mdi mdi-backspace"></i>
                                     </Button>
                                 </form>
                             </td>
@@ -56,6 +64,8 @@ Doctor - index
 
                     </tbody>
                 </table>
+                <div class="m-2">{{ $doctors->links() }}</div>
+
             </div>
         </div>
     </div>

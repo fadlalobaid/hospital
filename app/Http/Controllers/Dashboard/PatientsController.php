@@ -22,7 +22,7 @@ class PatientsController extends Controller
      */
     public function create()
     {
-return view('dashboard.patients.create');
+return view('dashboard.patients.create_edit',);
     }
 
 
@@ -33,51 +33,48 @@ return view('dashboard.patients.create');
             $request->all()
         );
         $patients->save();
-        return redirect()->route('patients.index')->with('sucess', 'Patient created successfully');
+        return redirect()->route('patients.index',[
+            'patients'=>$patients
+        ])->with('sucess', 'Patient created successfully');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+  
     public function show($id)
     {
-        //
+
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+
+    public function edit(Patient $patient)
     {
-        //
+
+return view('dashboard.patients.create_edit',[
+    'patient' => $patient
+]);
+
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, $id)
     {
-        //
+        $request->validate(Patient::rules());
+        $patients = Patient::find($id);
+        $patients->update($request->all());
+        $patients = Patient::all();
+        return redirect()->route('patients.index', compact('patients'))
+        ->with('info', 'patients updated seccessfuly');
+
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy($id)
     {
-        //
+      $patient=Patient::find($id);
+      $patient->delete();
+      $patients=Patient::all();
+      return redirect()->route('patients.index',[
+       'patients'=>$patients
+      ])->with('danger','patient deleted successfully');
+
     }
 }

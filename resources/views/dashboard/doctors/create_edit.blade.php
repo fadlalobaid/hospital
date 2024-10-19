@@ -12,42 +12,34 @@ Department - {{ isset($doctor)?'Edit':'Create' }}
         <div class="alert alert-danger">
             <ol type="1">
                 @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
+                <li>{{ $error }}</li>
                 @endforeach
 
             </ol>
         </div>
-      @endif
+        @endif
         <div class="card-body">
             <h4 class="card-title">Basic form elements</h4>
-            <a class="nav-link btn btn-success create-new-button" id="createbuttonDropdown" data-bs-toggle="dropdown" aria-expanded="false" href="{{ route('doctors.index') }}">Add Department</a>
-
-            <form action="{{ route('doctors.store') }}" method="POST" enctype="multipart/form-data" class="forms-sample">
+            <div class="d-grid gap-2 col-6 mx-auto">
+            <a class="nav-link btn btn-outline-success create-new-button" id="createbuttonDropdown"  aria-expanded="false" href="{{ route('doctors.index') }}">Doctors</a>
+            </div>
+            <form action="{{ isset($doctor)?route('doctors.update',$doctor->id):route('doctors.store') }}" method="POST" enctype="multipart/form-data" class="forms-sample">
                 @csrf
 
                 @if(isset($doctor))
-                @method('put')
+                @method('PUT')
                 @endif
 
                 <div class="form-group">
-                    <label for="exampleInputName1">Name</label>
-                    <input type="text" name="name" id="exampleInputName1" placeholder="Name" class="form-control
-                    @error('name')
-                     is-invalid
-                    @enderror
-                    ">
-                    @if ($errors->has('name'))
-                    <div class="text-danger">
-                        {{ $errors->first('name') }}
-                    </div>
-                    @endif
+                    <x-form.input type="text" name="name" placeholder="Name Doctor" lable="Name Doctor" value="{{ old('name', $doctor->name ?? '') }}" />
+
                 </div>
 
                 <div class="form-group">
                     <label>Department</label>
                     <select name="department_id" class="form-control">
                         @foreach ($departments as $department)
-                        <option value="{{ $department->id }}" @selected(old('department_id', $doctors->department->id ?? '') == $department->id)>
+                        <option  value="{{ $department->id }}" @selected(old('department_id', $doctor->department_id ?? '') == $department->id)>
                             {{ $department->name }}
                         </option>
                         @endforeach
@@ -55,39 +47,19 @@ Department - {{ isset($doctor)?'Edit':'Create' }}
                 </div>
 
                 <div class="form-group">
-                    <label for="exampleInputName1">discription</label>
-                    <textarea name="discription" placeholder="discription" cols="30" rows="10" class="form-control
-                      @error('discription')
-                       is-invalid
-                         @enderror
-                     ">
-                    </textarea>
-                    @if ($errors->has('discription'))
-                    <div class="text-danger">
-                        {{ $errors->first('discription') }}
+                    <x-form.textarea label="discription" name="discription" rows="10" cols="30"/>
 
-                    </div>
-                     @endif
                 </div>
 
                 <div class="form-group">
-                    <label for="exampleInputEmail3">Specialization</label>
-                    <input type="text" name="Specialization" id="exampleInputEmail3" placeholder="Specialization" class="form-control
-                     @error('Specialization')
-                       is-invalid
-                    @enderror
-                    ">
-                    @if ($errors->has('discription'))
-                    <div class="text-danger">
-                        {{ $errors->first('discription') }}
+                    <x-form.input type="text" name="Specialization" placeholder="Specialization" lable="Specialization:" value="{{ old('Specialization', $doctor->Specialization ?? '') }}" />
 
-                    </div>
-                     @endif
+
                 </div>
 
                 <div class="form-group">
-                    <label for="exampleInputEmail3">Email address</label>
-                    <input type="email" name="email" class="form-control" id="exampleInputEmail3" placeholder="Email">
+                    <x-form.input type="email" name="email" placeholder="Email" lable="Email:" value="{{ old('email', $doctor->email ?? '') }}" />
+
                 </div>
 
 
@@ -96,14 +68,15 @@ Department - {{ isset($doctor)?'Edit':'Create' }}
                 <div class="form-group">
                     <label for="exampleSelectGender">Gender</label>
                     <x-form.radio name="gender" :options="[
-                'male' => 'male',
-                'female' => 'female',
-             ]" checked="female" />
+                     'male' => 'male',
+                     'female' => 'female',
+                    ]" checked="female" />
                 </div>
 
+             
 
                 <button type="submit" class="btn btn-primary me-2">
-                    ADD
+                   {{isset($doctor)?'Edit':'ADD'}}
                 </button>
 
             </form>

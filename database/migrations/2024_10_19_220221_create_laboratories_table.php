@@ -13,14 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('patients', function (Blueprint $table) {
+        Schema::create('laboratories', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->date('birthday');
-            $table->enum('gander',['male','female']);
-            $table->bigInteger('number_phone')->nullable();
-            $table->string('email');
-            $table->string('image')->nullable();
             $table->timestamps();
         });
     }
@@ -32,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('patients');
+        Schema::dropIfExists('laboratories');
     }
 };

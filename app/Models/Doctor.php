@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Doctor extends Model
 {
 
-    protected $table = "doctor";
+    protected $table = "doctors";
     use HasFactory;
     protected $fillable = [
         'department_id',
@@ -28,7 +28,7 @@ class Doctor extends Model
     public static function rules()
     {
         return [
-            'departmaente_id' => 'required|exists:departments,id',
+            'department_id' => 'required|exists:departments,id',
             'discription'=>'required',
             'name' => 'required|String|min:3|max:24',
             // 'birthday' => 'required|date',
@@ -49,5 +49,20 @@ class Doctor extends Model
     }
     public function department(){
         return $this->belongsTo(Department::class, 'department_id', 'id');
+    }
+    public function patients(){
+        return $this->belongsToMany(Patient::class);
+    }
+    public function prescriptions()
+    {
+        return $this->hasMany(Prescription::class,'doctor_id','id');
+    }
+    public function nurses()
+    {
+        return $this->belongsToMany(Nurse::class, 'doctor_nurse');
+    }
+    public function appointments()
+    {
+        return $this->hasMany(Appointment::class,'doctor_id','id');
     }
 }

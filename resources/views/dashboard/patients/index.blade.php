@@ -10,10 +10,16 @@ Patients - index
 
     <div class="card">
 
+<x-alert type="success" />
+<x-alert type="info" />
+<x-alert type="danger" />
         <div class="card-body">
             <h4 class="card-title">Inverse table</h4>
-            <a class="nav-link btn btn-success create-new-button" id="createbuttonDropdown" data-bs-toggle="dropdown" aria-expanded="false" href="{{ route('patients.create') }}">Add Patiens</a>
-
+            <div class="d-grid gap-2 col-6 mx-auto">
+            <a class="nav-link btn btn-outline-success create-new-button" id="createbuttonDropdown"  aria-expanded="false" href="{{ route('patients.create') }}">
+                 <i class="mdi mdi-account-plus"></i> <span>Add Patiens</span>
+            </a>
+            </div>
             </p>
             <div class="table-responsive">
                 <table class="table table-dark">
@@ -24,7 +30,7 @@ Patients - index
                             <th> Gander </th>
                             <th> Email </th>
                             <th> Number Phone </th>
-                            <th> Satting </th>
+                            <th  > Satting </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -32,22 +38,22 @@ Patients - index
                         <tr>
                             <td> {{ $patient->name }} </td>
                             <td>{{$patient->birthday }}</td>
-                            <td> {{ $patient->gander }}</td>
+                            <td> {{ $patient->gander}}</td>
                             <td> {{ $patient->email }}</td>
                             <td> {{ $patient->number_phone }}</td>
-                            {{-- <td>
-                            <a href="{{ route('patient.edit',$patient->id) }}" class="btn btn-success">Edit</a>
-                            </td>
+                             <td >
+                             <a href="{{ route('patients.edit',$patient->id) }}" class="btn btn-success m-1">
+                                <i class="mdi mdi-auto-fix"></i>
+                             </a>
 
-                            <td>
-                                <form action="{{ route('patient.destroy', $patient->id) }}" method="post">
+                                <form action="{{ route('patients.destroy', $patient->id) }}" method="post" class="m-1">
                                     @csrf
                                     @method('DELETE')
-                                    <Button type="submit" class="btn btn-danger">
-                                        Delete
+                                    <Button type="submit" class="btn btn-danger ">
+                                        <i class="mdi mdi-backspace"></i>
                                     </Button>
                                 </form>
-                            </td> --}}
+                            </td>
                         </tr>
                         @empty
                         <td colspan="4">No Data</td>

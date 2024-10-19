@@ -13,9 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('doctors', function (Blueprint $table) {
+        Schema::create('doctors', callback: function (Blueprint $table) {
             $table->id();
             $table->foreignId('department_id')
+            ->nullable()
             ->constrained('departments')
             ->cascadeOnDelete();
             $table->string('name');
@@ -26,7 +27,7 @@ return new class extends Migration
             $table->enum('gender',['male','female']);
             $table->string('Specialization')->nullable();
             $table->string('email');
-            $table->string('phone')->nullable();
+            $table->bigInteger('phone')->nullable();
             $table->char('languege',2)->default('en')->nullable() ;
 
 

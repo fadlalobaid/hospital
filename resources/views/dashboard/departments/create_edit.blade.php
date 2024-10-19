@@ -1,6 +1,6 @@
 @extends("layout.dashboard")
 @section('title')
-Department - {{ isset($doctor)?'Edit':'Create' }}
+Department - {{ isset($department)?'Edit':'Create' }}
 @endsection
 
 @section('content')
@@ -12,50 +12,33 @@ Department - {{ isset($doctor)?'Edit':'Create' }}
         <div class="alert alert-danger">
             <ol type="1">
                 @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
+                <li>{{ $error }}</li>
                 @endforeach
 
             </ol>
         </div>
         @endif
         <div class="card-body">
-            <h4 class="card-title">Basic form elements</h4>
-            <a class="nav-link btn btn-success create-new-button" id="createbuttonDropdown" data-bs-toggle="dropdown" aria-expanded="false" href="{{ route('doctors.index') }}">Add Department</a>
-
-            <form action="{{ route('departemnts.store') }}" method="POST" enctype="multipart/form-data" class="forms-sample">
+            <h4 class="card-title">Add Patients</h4>
+  
+            <div class="d-grid gap-2 col-6 mx-auto">
+            <a class="nav-link btn btn-outline-success create-new-button mb-3" id="createbuttonDropdown"  aria-expanded="false" href="{{ route('departemnts.index') }}">Department</a>
+            </div>
+            <form action="{{isset($department)? route('departemnts.update',$department->id):route('departemnts.store') }}" method="POST" enctype="multipart/form-data" class="forms-sample">
                 @csrf
 
-                @if(isset($doctor))
-                @method('put')
+                @if(isset($department))
+                @method('PUT')
                 @endif
 
                 <div class="form-group">
-                    <label for="exampleInputName1">Name</label>
-                    <input type="text" name="name" id="exampleInputName1" placeholder="Name" class="form-control
-                    @error('name')
-                     is-invalid
-                    @enderror
-                    ">
-                    @if ($errors->has('name'))
-                    <div class="text-danger">
-                        {{ $errors->first('name') }}
-                    </div>
-                    @endif
+                    <x-form.input type="text" name="name" placeholder="Name Patient" lable="Name Patient" value="{{ old('name', $patient->name ?? '') }}" />
+
                 </div>
 
-                <div class="form-group">
-                    <label for="exampleInputName1">discription</label>
-                    <textarea name="description" placeholder="discription" cols="30" rows="10" class="form-control
-                      @error('discription')
-                       is-invalid
-                         @enderror
-                     ">
-                    </textarea>
-                    @if ($errors->has('discription'))
-                    <div class="text-danger">
-                        {{ $errors->first('discription') }}
-                        @endif
-                    </div>
+                <div class="form-group ">
+                    <x-form.textarea label="description" name="description" rows="10" cols="30"/>
+
                 </div>
 
 
@@ -63,16 +46,15 @@ Department - {{ isset($doctor)?'Edit':'Create' }}
 
 
                 <div class="form-group m-2">
-                    <label for="exampleSelectGender">Gender</label>
                     <x-form.radio name="status" :options="[
-                'active' => 'active',
-                'inactive' => 'inactive',
-             ]" checked="active" />
+                     'active' => 'active',
+                     'inactive' => 'inactive',
+                      ]" checked="active" />
                 </div>
 
 
                 <button type="submit" class="btn btn-primary me-2">
-                    ADD
+                  {{ isset($department)?'Edit':'ADD' }}
                 </button>
 
             </form>

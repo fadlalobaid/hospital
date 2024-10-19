@@ -29,4 +29,20 @@ class Patient extends Model
     public function addressP(){
         return $this->hasOne(Patient::class,'patient_id','id')->withDefault();
     }
+
+    public function doctors(){
+        return $this->belongsToMany(Doctor::class);
+    }
+    public function prescriptions()
+    {
+        return $this->hasMany(Prescription::class);
+    }
+    public function nurses()
+    {
+        return $this->belongsToMany(Nurse::class, 'nurse_patient');
+    }
+    public function appointments()
+    {
+        return $this->hasMany(Appointment::class,'patient_id','id');
+    }
 }

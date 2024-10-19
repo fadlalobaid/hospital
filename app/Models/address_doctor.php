@@ -27,6 +27,6 @@ class address_doctor extends Model
 
     }
     public function doctor(){
-        return $this->belongsToMany(doctor::class,'doctor_id','id')->withDefault();
+        return $this->belongsTo(doctor::class,'doctor_id','id')->withDefault();
     }
 }

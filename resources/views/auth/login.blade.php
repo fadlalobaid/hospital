@@ -39,16 +39,16 @@
                 </a>
             @endif
 
-            <x-primary-button class="ml-3">
-                {{ __('Log in') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-guest-layout>  --}}
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
+                <x-primary-button class="ml-3">
+                    {{ __('Log in') }}
+                </x-primary-button>
+            </div>
+        </form>
+    </x-guest-layout>  --}}
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Corona Admin</title>
@@ -63,7 +63,7 @@
     <!-- Layout styles -->
     <link rel="stylesheet" href="{{ asset('../../assets/css/style.css') }}">
     <!-- End layout styles -->
-    <link rel="shortcut icon" href="{{ asset('../../assets/images/favicon.png') }}" />
+    <link rel="shortcut icon" href="{{ asset('../../assets/images/backgroundlog.jpg') }}" />
   </head>
   <body>
     <div class="container-scroller">

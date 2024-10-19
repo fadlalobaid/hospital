@@ -31,4 +31,8 @@ class Department extends Model
     public function doctors(){
         return $this->hasMany(Doctor::class,'department_id','id');
     }
+    public function nurses()
+    {
+        return $this->hasMany(Nurse::class,'department_id','id');
+    }
 }

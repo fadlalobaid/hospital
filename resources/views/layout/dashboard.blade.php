@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
     <!-- End layout styles -->
     <link rel="shortcut icon" href="{{asset('assets/images/favicon.png')}}" />
+
 </head>
 <body>
     <div class="container-scroller">
@@ -29,14 +30,14 @@
 
         <!-- partial:partials/_sidebar.html -->
 
-        {{--  @include('layout.main-sidebar')  --}}
-        <x-nav/>
+        {{-- @include('layout.main-sidebar')  --}}
+        <x-nav />
         <!-- partial -->
         <div class="container-fluid page-body-wrapper">
             <!-- partial:partials/_navbar.html -->
             <nav class="navbar p-0 fixed-top d-flex flex-row">
                 <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
-                    <a class="navbar-brand brand-logo-mini" href="index.html"><img src="assets/images/logo-mini.svg" alt="logo" /></a>
+                    <a class="navbar-brand brand-logo-mini" href="index.html"><img src="{{ asset('assets/images/logo-mini.svg') }}" alt="logo" /></a>
                 </div>
                 <div class="navbar-menu-wrapper flex-grow d-flex align-items-stretch">
                     <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -111,7 +112,7 @@
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item preview-item">
                                     <div class="preview-thumbnail">
-                                        <img src="assets/images/faces/face4.jpg" alt="image" class="rounded-circle profile-pic">
+                                        <img src="{{ asset('assets/images/faces/face4.jpg') }}" alt="image" class="rounded-circle profile-pic">
                                     </div>
                                     <div class="preview-item-content">
                                         <p class="preview-subject ellipsis mb-1">Mark send you a message</p>
@@ -121,7 +122,7 @@
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item preview-item">
                                     <div class="preview-thumbnail">
-                                        <img src="assets/images/faces/face2.jpg" alt="image" class="rounded-circle profile-pic">
+                                        <img src="{{ asset('assets/images/faces/face2.jpg') }}" alt="image" class="rounded-circle profile-pic">
                                     </div>
                                     <div class="preview-item-content">
                                         <p class="preview-subject ellipsis mb-1">Cregh send you a message</p>
@@ -131,7 +132,7 @@
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item preview-item">
                                     <div class="preview-thumbnail">
-                                        <img src="assets/images/faces/face3.jpg" alt="image" class="rounded-circle profile-pic">
+                                        <img src="{{asset ('assets/images/faces/face3.jpg') }}" alt="image" class="rounded-circle profile-pic">
                                     </div>
                                     <div class="preview-item-content">
                                         <p class="preview-subject ellipsis mb-1">Profile picture updated</p>
@@ -192,7 +193,7 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link" id="profileDropdown" href="#" data-bs-toggle="dropdown">
                                 <div class="navbar-profile">
-                                    <img class="img-xs rounded-circle" src="assets/images/faces/face15.jpg" alt="">
+                                    <img class="img-xs rounded-circle" src="{{asset ('assets/images/faces/face15.jpg') }}" alt="">
                                     <p class="mb-0 d-none d-sm-block navbar-profile-name">Henry Klein</p>
                                     <i class="mdi mdi-menu-down d-none d-sm-block"></i>
                                 </div>
@@ -217,9 +218,14 @@
                                             <i class="mdi mdi-logout text-danger"></i>
                                         </div>
                                     </div>
-                                    <div class="preview-item-content">
-                                        <p class="preview-subject mb-1">Log out</p>
-                                    </div>
+                                    <form action="{{ route('logout') }}" method="post">
+                                        @csrf
+                                        <div class="preview-item-content">
+                                            <button class="btn btn-outline-danger border border-0" type="submit">Logout</button>
+
+                                        </div>
+                                    </form>
+
                                 </a>
                                 <div class="dropdown-divider"></div>
                                 <p class="p-3 mb-0 text-center">Advanced settings</p>
@@ -259,7 +265,7 @@
     </div>
     <!-- container-scroller -->
     <!-- plugins:js -->
-    <script src="assets/vendors/js/vendor.bundle.base.js"></script>
+    <script src="{{ asset('assets/vendors/js/vendor.bundle.base.js') }}"></script>
     <!-- endinject -->
     <!-- Plugin js for this page -->
     <script src="{{ asset('assets/vendors/chart.js/Chart.min.js') }}"></script>
