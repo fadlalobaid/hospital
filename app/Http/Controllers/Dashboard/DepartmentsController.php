@@ -36,9 +36,10 @@ class DepartmentsController extends Controller
     }
 
 
-    public function show(Department $department)
+    public function show($id)
     {
-
+        $department= Department::find($id);
+        $department->doctors();
         return view('dashboard.departments.show', [
             'department' => $department
         ]);

@@ -15,4 +15,20 @@ return[
     'route'=>'patients.index',
     'icon'=>'mdi mdi-account-multiple'
    ],
+   [
+    'name'=>'Nurses',
+    'route'=>'nurses.index',
+    'icon'=>'mdi mdi-account-multiple'
+   ],
+   [
+    'name'=>'Medicines',
+    'route'=>'medicines.index',
+    'icon'=>'mdi mdi-briefcase-plus'
+   ],
+   [
+    'name'=>'Prescriptions',
+    'route'=>'prescriptions.index',
+    'icon'=>'mdi mdi-file-document-box'
+   ],
 ];
+

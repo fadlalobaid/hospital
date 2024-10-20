@@ -17,7 +17,7 @@ Doctors - index
             <h4 class="card-title">Doctors Table</h4>
             <div class="d-grid gap-2 col-6 mx-auto">
             <a class="nav-link btn btn-outline-success create-new-button" id="createbuttonDropdown"  aria-expanded="false" href="{{ route('doctors.create') }}">
-                 <i class="mdi mdi-account-plus"></i> <span>Add Doctors</span>
+                 <i class="mdi mdi-account-plus"></i> <span>Add Medicine</span>
             </a>
             </div>
             </p>
@@ -25,30 +25,32 @@ Doctors - index
                 <table class="table table-dark">
                     <thead>
                         <tr>
-                            <th> Name Doctor</th>
-                            <td>Name Department</td>
-                            <th> discription </th>
-                            <th> Gander </th>
-                            <th> Specialization </th>
-                            <th>email </th>
+                            <th> Name Medicine</th>
+                            <td>Dosage</td>
+                            <th> Date Create </th>
+                            <th> Date End </th>
+                            <th> Manufacturer </th>
+                            <th>Quantity </th>
+                            <th>Price </th>
                             <th  > Satting </th>
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse ($doctors as $doctor)
+                        @forelse ($medicines as $medicine)
                         <tr>
-                            <td> {{ $doctor->name }} </td>
-                            <td><a href="{{ route('departemnts.index') }}">{{ $doctor->department->name }}</a></td>
-                            <td>{{$doctor->discription }}</td>
-                            <td> {{ $doctor->gender}}</td>
-                            <td> {{ $doctor->Specialization }}</td>
-                            <td> {{ $doctor->email }}</td>
+                            <td> {{ $medicine->medicine_name }} </td>
+                            <td>{{ $medicine->dosage ??'-'}}</td>
+                            <td>{{$medicine->date_created ?? '-'}}</td>
+                            <td> {{ $medicine->date_end}}</td>
+                            <td> {{ $medicine->manufacturer }}</td>
+                            <td> {{ $medicine->quantity }}</td>
+                            <td> {{ $medicine->price }}</td>
                              <td >
-                             <a href="{{ route('doctors.edit',$doctor->id) }}" class="btn btn-success m-1">
+                             <a href="{{ route('medicines.edit',$medicine->id) }}" class="btn btn-success m-1">
                                 <i class="mdi mdi-auto-fix"></i>
                              </a>
 
-                                <form action="{{ route('doctors.destroy', $doctor->id) }}" method="post" class="m-1">
+                                <form action="{{ route('medicines.destroy', $medicine->id) }}" method="post" class="m-1">
                                     @csrf
                                     @method('DELETE')
                                     <Button type="submit" class="btn btn-danger ">
@@ -64,7 +66,7 @@ Doctors - index
 
                     </tbody>
                 </table>
-                <div class="m-2">{{ $doctors->links() }}</div>
+                <div class="m-2">{{ $medicines->links() }}</div>
 
             </div>
         </div>

@@ -13,7 +13,7 @@ class DoctorsController extends Controller
 
     public function index()
     {
-        $doctors = Doctor::with(['department'])->paginate(3);
+        $doctors = Doctor::with(['department'])->paginate(7);
         return view('dashboard.doctors.index', [
             'doctors' => $doctors
         ]);

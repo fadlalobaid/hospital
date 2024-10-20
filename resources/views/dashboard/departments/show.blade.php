@@ -14,10 +14,10 @@ Department - show
         <div class="card-body">
 
 
-            <h4 class="card-title">{{ $department->name }}</h4>
-            <h4></h4>
+            <h4 class="card-title">{{ $department->name }} </h4>
+
             <div class="d-grid gap-2 col-6 mx-auto">
-                <a class="nav-link btn btn-outline-success create-new-button" id="createbuttonDropdown" data-bs-toggle="dropdown" aria-expanded="false" href="{{ route('departemnts.index') }}"> Department</a>
+                <a class="nav-link btn btn-outline-success create-new-button" href="{{ route('departemnts.index') }}"> Department</a>
             </div>
             </p>
             <div class="table-responsive">
@@ -30,22 +30,14 @@ Department - show
                             <th> Name Doctor </th>
                             <th> gander </th>
                             <th> Specialization </th>
-                            <th> birthday </th>
+
 
 
                         </tr>
                     </thead>
                     <tbody>
-@foreach ($department->doctors as $doctor)
-<tr></tr>
-    <td>{{ $doctor->name }}</td>
-    <td>{{ $doctor->gender }}</td>
-    <td>{{ $doctor->Specialization }}</td>
-    <td>{{ $doctor->birthday }}</td>
-</tr>
 
-@endforeach
-                        {{--  @forelse ($department->doctors as $doctor)
+                        @forelse ($department->doctors as $doctor)
                         <tr>
                             <td>{{ $doctor->id }}</td>
 
@@ -58,7 +50,7 @@ Department - show
                         </tr>
                         @empty
                         <td colspan="4">No Data</td>
-                        @endforelse  --}}
+                        @endforelse
 
 
                     </tbody>

@@ -14,10 +14,17 @@ return new class extends Migration
     public function up()
     {
         Schema::create('nurse_patient', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('nurse_id')->constrained('nurses')->cascadeOnDelete(); //
-            $table->foreignId('patient_id')->constrained('patients')->cascadeOnDelete(); // only
-            $table->timestamps();
+
+            $table->foreignId('nurse_id')
+            ->constrained('nurses')->
+            cascadeOnDelete(); //
+            $table->foreignId('patient_id')
+            ->constrained('patients')
+            ->cascadeOnDelete(); // only
+            $table->primary([
+                'nurse_id',
+                'patient_id'
+            ]);
         });
     }
 

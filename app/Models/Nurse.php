@@ -17,9 +17,20 @@ class Nurse extends Model
         'phone',
         'language',
         'hours_work',
-        
+
     ];
 
+    public static function rules(){
+        return [
+        'department_id'=>'required|exists:departments,id',
+        'name'=>'required|String|min:3|max:21',
+        'birthday'=>'required',
+        'gander'=>'in:male,female',
+        'email'=>'required',
+        'hours_work'=>'required'
+    ];
+
+    }
 
         public function department()
         {

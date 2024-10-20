@@ -20,7 +20,7 @@ Department - {{ isset($department)?'Edit':'Create' }}
         @endif
         <div class="card-body">
             <h4 class="card-title">Add Patients</h4>
-  
+
             <div class="d-grid gap-2 col-6 mx-auto">
             <a class="nav-link btn btn-outline-success create-new-button mb-3" id="createbuttonDropdown"  aria-expanded="false" href="{{ route('departemnts.index') }}">Department</a>
             </div>
@@ -32,7 +32,7 @@ Department - {{ isset($department)?'Edit':'Create' }}
                 @endif
 
                 <div class="form-group">
-                    <x-form.input type="text" name="name" placeholder="Name Patient" lable="Name Patient" value="{{ old('name', $patient->name ?? '') }}" />
+                    <x-form.input type="text" name="name" placeholder="Name Department" lable="Name Patient" value="{{ old('name', $patient->name ?? '') }}" />
 
                 </div>
 

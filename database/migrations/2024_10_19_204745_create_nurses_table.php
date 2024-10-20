@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('name');
             $table->date('birthday')->nullable();
             $table->enum('gander',['male','female']);
-            $table->string('email')->unique();
+            $table->string('email')->unique();/////
             $table->bigInteger('phone')->nullable();
             $table->char('language',2)->nullable();
             $table->integer('hours_work')->nullable();

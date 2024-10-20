@@ -9,7 +9,7 @@
                 <div class="profile-pic">
                     <div class="count-indicator">
                         <img class="img-xs rounded-circle " src="{{asset ('assets/images/faces/face15.jpg') }}" alt="">
-                        <span class="count bg-success"></span>
+                        <span class="count bg-danger"></span>
                     </div>
                     <div class="profile-name">
                         <h5 class="mb-0 font-weight-normal">Henry Klein</h5>
@@ -40,15 +40,21 @@
                         </div>
                     </a>
                     <div class="dropdown-divider"></div>
-                    <a href="#" class="dropdown-item preview-item">
+
+                    <a class="dropdown-item preview-item">
                         <div class="preview-thumbnail">
                             <div class="preview-icon bg-dark rounded-circle">
-                                <i class="mdi mdi-calendar-today text-success"></i>
+                                <i class="mdi mdi-logout text-danger"></i>
                             </div>
                         </div>
-                        <div class="preview-item-content">
-                            <p class="preview-subject ellipsis mb-1 text-small">To-do list</p>
-                        </div>
+                        <form action="{{ route('logout') }}" method="post">
+                            @csrf
+                            <div class="preview-item-content">
+                                <button class="btn btn-outline-danger border border-0" type="submit">Logout</button>
+
+                            </div>
+                        </form>
+
                     </a>
                 </div>
             </div>

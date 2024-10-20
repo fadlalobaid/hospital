@@ -14,11 +14,15 @@ return new class extends Migration
     public function up()
     {
         Schema::create('medicine_prescription', function (Blueprint $table) {
-            $table->id();
+
             $table->foreignId('prescription_id')->constrained('prescriptions')->cascadeOnDelete();
             $table->foreignId('medicine_id')->constrained('medicines')->cascadeOnDelete();
+            $table->primary([
+                'prescription_id',
+                'medicine_id'
+            ]);
 
-            $table->timestamps();
+
         });
     }
 

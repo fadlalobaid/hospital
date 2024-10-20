@@ -32,7 +32,7 @@ class Doctor extends Model
             'discription'=>'required',
             'name' => 'required|String|min:3|max:24',
             // 'birthday' => 'required|date',
-            // 'Graduation_date' => 'required|date',
+            // 'Graduation_date' => 'required|date',    
             'gender' => 'in:male,female',
             'Specialization' => 'required|String|min:3|max:50',
             'email' => 'required|email',

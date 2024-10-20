@@ -26,7 +26,7 @@ class NurseFactory extends Factory
                 "female"
             ]),
             'email'=>$this->faker->safeEmail(),
-            'hours_work'=>$this->faker->randomNumber(),
+            'hours_work'=>$this->faker->randomNumber(1,6),
         ];
     }
 }

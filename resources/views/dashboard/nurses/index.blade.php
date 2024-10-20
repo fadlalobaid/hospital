@@ -1,6 +1,6 @@
 @extends("layout.dashboard")
 @section('title')
-Department - index
+Nurse - index
 @endsection
 
 @section('content')
@@ -15,7 +15,7 @@ Department - index
             <h4 class="card-title">Department</h4>
             <div class="d-grid gap-2 col-6 mx-auto">
 
-                <a class="nav-link btn btn-outline-success " id="createbuttonDropdown" aria-expanded="false" href="{{ route('departemnts.create') }}">Add Department</a>
+                <a class="nav-link btn btn-outline-success " id="createbuttonDropdown" aria-expanded="false" href="{{ route('nurses.create') }}">Add Nurse</a>
             </div>
             </p>
             <div class="table-responsive">
@@ -23,33 +23,39 @@ Department - index
                     <thead>
                         <tr>
                             <th>id</th>
+                            <th>Name Nurse</th>
                             <th>Name Department</th>
-                            <th> discrption </th>
-                            <th>Count_doctor</th>
-                            <th> status </th>
+                            <th> Birthday </th>
+                            <th>Gander</th>
+                            <th> Email </th>
+                            <th> Hours Work </th>
                             <th> Satting </th>
-                            <th> Show </th>
+
 
 
                         </tr>
                     </thead>
                     <tbody>
 
-                        @forelse ($departments as $department)
+                        @forelse ($nurses as $nurse)
                         <tr>
-                            <td>{{ $department->id }}</td>
-                            <td> {{ $department->name }}</td>
-                            <td class="text-wrap"> {{ $department->description }}</td>
-                            <td> <i class="mdi mdi-numeric-{{ $department->doctors_count }}-box-outline text-success fs-4 "></i> </td>
+                            <td>{{ $nurse->id }}</td>
+                            <td> {{ $nurse->name }}</td>
+                            <td> {{ $nurse->department->name }}</td>
+                            <td >{{ $nurse->birthday }} </td>
+                            <td>{{ $nurse->gander }}</td>
                             <td>
-                                {{ $department->status }}
+                                {{ $nurse->email }}
                             </td>
                             <td>
-                                <a href="{{ route('departemnts.edit',$department->id) }}" class="btn btn-success m-1">
+                                {{ $nurse->hours_work }}
+                            </td>
+                            <td>
+                                <a href="{{ route('nurses.edit',$nurse->id) }}" class="btn btn-success m-1">
                                     <i class="mdi mdi-auto-fix fs-6"></i>
                                 </a>
 
-                                <form action="{{ route('departemnts.destroy', $department->id) }}" method="post">
+                                <form action="{{ route('nurses.destroy',$nurse->id) }}" method="post">
                                     @csrf
                                     @method('DELETE')
                                     <Button type="submit" class="btn btn-danger m-1">
@@ -57,11 +63,7 @@ Department - index
                                     </Button>
                                 </form>
                             </td>
-                            <td>
-                                <a href="{{ route('departemnts.show', $department->id) }}" class="btn btn-warning h-25">
-                                    <i class="mdi mdi-eye fs-6"></i>
-                                </a>
-                            </td>
+
                         </tr>
                         @empty
                         <td colspan="4">No Data</td>
@@ -71,7 +73,7 @@ Department - index
                     </tbody>
 
                 </table>
-                {{ $departments->links() }}
+                {{ $nurses->links() }}
             </div>
         </div>
     </div>

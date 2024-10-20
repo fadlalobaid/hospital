@@ -1,6 +1,6 @@
 @extends("layout.dashboard")
 @section('title')
-Department - index
+Prescription - index
 @endsection
 
 @section('content')
@@ -12,10 +12,10 @@ Department - index
         <x-alert type="info" />
         <x-alert type="danger" />
         <div class="card-body">
-            <h4 class="card-title">Department</h4>
+            <h4 class="card-title">Prescription</h4>
             <div class="d-grid gap-2 col-6 mx-auto">
 
-                <a class="nav-link btn btn-outline-success " id="createbuttonDropdown" aria-expanded="false" href="{{ route('departemnts.create') }}">Add Department</a>
+                <a class="nav-link btn btn-outline-success " id="createbuttonDropdown" aria-expanded="false" href="{{ route('prescriptions.create') }}">Add Prescription</a>
             </div>
             </p>
             <div class="table-responsive">
@@ -23,10 +23,11 @@ Department - index
                     <thead>
                         <tr>
                             <th>id</th>
-                            <th>Name Department</th>
-                            <th> discrption </th>
-                            <th>Count_doctor</th>
-                            <th> status </th>
+                            <th> Doctor Name</th>
+                            <th>  petient Name </th>
+                            <th>Recipe Name</th>
+                            <th> Recipe Date </th>
+                            <th> instructions </th>
                             <th> Satting </th>
                             <th> Show </th>
 
@@ -35,21 +36,24 @@ Department - index
                     </thead>
                     <tbody>
 
-                        @forelse ($departments as $department)
+                        @forelse ($prescriptions as $item)
                         <tr>
-                            <td>{{ $department->id }}</td>
-                            <td> {{ $department->name }}</td>
-                            <td class="text-wrap"> {{ $department->description }}</td>
-                            <td> <i class="mdi mdi-numeric-{{ $department->doctors_count }}-box-outline text-success fs-4 "></i> </td>
+                            <td>{{ $item->id }}</td>
+                            <td> {{ $item->doctor->name }}</td>
+                            <td > {{ $item->patient->name }}</td>
+                            <td> {{ $item->recipe_name }} </td>
                             <td>
-                                {{ $department->status }}
+                                {{ $item->recipe_date }}
                             </td>
                             <td>
-                                <a href="{{ route('departemnts.edit',$department->id) }}" class="btn btn-success m-1">
+                                {{ $item->instructions }}
+                            </td>
+                            <td>
+                                <a href="{{ route('prescriptions.edit',$item->id) }}" class="btn btn-success m-1">
                                     <i class="mdi mdi-auto-fix fs-6"></i>
                                 </a>
 
-                                <form action="{{ route('departemnts.destroy', $department->id) }}" method="post">
+                                <form action="{{ route('prescriptions.destroy', $item->id) }}" method="post">
                                     @csrf
                                     @method('DELETE')
                                     <Button type="submit" class="btn btn-danger m-1">
@@ -58,7 +62,7 @@ Department - index
                                 </form>
                             </td>
                             <td>
-                                <a href="{{ route('departemnts.show', $department->id) }}" class="btn btn-warning h-25">
+                                <a href="{{ route('prescriptions.show', $item->id) }}" class="btn btn-warning h-25">
                                     <i class="mdi mdi-eye fs-6"></i>
                                 </a>
                             </td>
@@ -71,7 +75,7 @@ Department - index
                     </tbody>
 
                 </table>
-                {{ $departments->links() }}
+                {{ $prescriptions->links() }}
             </div>
         </div>
     </div>
