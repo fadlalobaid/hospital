@@ -1,6 +1,6 @@
 @extends("layout.dashboard")
 @section('title')
-Department - show
+Doctor - Report - show
 @endsection
 
 @section('content')
@@ -14,10 +14,10 @@ Department - show
         <div class="card-body">
 
 
-            <h4 class="card-title">{{ $department->name }} </h4>
+            <h4 class="card-title">{{ $doctor->name}} </h4>
 
             <div class="d-grid gap-2 col-6 mx-auto">
-                <a class="nav-link btn btn-outline-success create-new-button" href="{{ route('departemnts.index') }}"> Department</a>
+                <a class="nav-link btn btn-outline-success create-new-button" href="{{ route('doctors.index') }}"> Department</a>
             </div>
             </p>
             <div class="table-responsive">
@@ -28,9 +28,9 @@ Department - show
                             <th>id</th>
 
                             <th> Name Doctor </th>
-                            <th> gander </th>
-                            <th> Specialization </th>
-                            <th> Birth Date </th>
+                            <th> Data Report </th>
+                            <th> Name Patient </th>
+                            <th> Report </th>
 
 
 
@@ -38,17 +38,17 @@ Department - show
                     </thead>
                     <tbody>
 
-                        @forelse ($department->doctors as $doctor)
+                        @forelse ($doctor->reports as $report)
                         <tr>
-                            <td>{{ $doctor->id }}</td>
+                            <td>{{ $report->id }}</td>
 
-                            <td> {{ $doctor->name }}</td>
-                            <td> {{ $doctor->gander }}</td>
+                            <td> {{ $report->doctor->name }}</td>
+                            <td> {{ $report->date_report }}</td>
                             <td>
-                                {{ $doctor->specialization }}
+                                {{ $report->patient->name }}
                             </td>
                             <td>
-                                {{ $doctor->birthday }}
+                                {{ $report->report }}
                             </td>
 
                         </tr>

@@ -16,19 +16,24 @@ return new class extends Migration
         Schema::create('doctors', callback: function (Blueprint $table) {
             $table->id();
             $table->foreignId('department_id')
-            ->nullable()
-            ->constrained('departments')
-            ->cascadeOnDelete();
+                ->nullable()
+                ->constrained('departments')
+                ->cascadeOnDelete();
+            $table->foreignId('user_id')
+                ->constrained('users')
+                ->cascadeOnDelete();
             $table->string('name');
+            $table->string('specialization')->nullable();
             $table->date('birthday')->nullable();
-            $table->text('discription')->nullable();
             $table->string('image')->nullable();
-            $table->date('Graduation_date')->nullable();
-            $table->enum('gender',['male','female']);
-            $table->string('Specialization')->nullable();
+            $table->enum('gander', ['male', 'female']);
             $table->string('email');
             $table->bigInteger('phone')->nullable();
-            $table->char('languege',2)->default('en')->nullable() ;
+            $table->char('country',2)->nullable();
+            $table->string('city')->nullable();
+            $table->string('street')->nullable();
+
+
 
 
             $table->timestamps();

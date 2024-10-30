@@ -9,13 +9,14 @@ class Department extends Model
 {
     use HasFactory;
 
-    
-    protected $fillable=[
-'name',
-'description',
-'status'
+
+    protected $fillable = [
+        'name',
+        'description',
+        'status'
     ];
-    public static function rules(){
+    public static function rules()
+    {
         return [
             'name' => 'required|String|min:3|max:21',
 
@@ -35,4 +36,11 @@ class Department extends Model
     {
         return $this->hasMany(Nurse::class,'department_id','id');
     }
+
+
+
+    // public function services()
+    // {
+    //     return $this->hasMany(Service::class,'department_id','id');
+    // }
 }

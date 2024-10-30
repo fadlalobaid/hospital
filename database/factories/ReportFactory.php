@@ -7,9 +7,9 @@ use App\Models\Patient;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Appointment>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Report>
  */
-class AppointmentFactory extends Factory
+class ReportFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -19,10 +19,11 @@ class AppointmentFactory extends Factory
     public function definition()
     {
         return [
+            'date_report'=>$this->faker->date('Y-m-d'),
+            'time_report'=>$this->faker->time('H:i:s'),
             'doctor_id'=>Doctor::inRandomOrder()->first()->id,
             'patient_id'=>Patient::inRandomOrder()->first()->id,
-            'appointment_date'=>$this->faker->date('Y-m-d'),
-            'appointment_time'=>$this->faker->time('h:i:s','now')
+            'report'=>$this->faker->words(12,true),
         ];
     }
 }

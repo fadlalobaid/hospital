@@ -5,27 +5,26 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Prescription extends Model
+class Report extends Model
 {
-
-    //
+    protected $table = 'reports';
     use HasFactory;
     protected $fillable = [
+        'date_report',
+        'time_report',
         'doctor_id',
         'patient_id',
-        'recipe_name',
-        'recipe_date',
-        'instructions',
+        'report',
     ];
 
     public static function rules()
     {
         return [
+            'date_report' => 'required|date',
+            'time_report' => 'required',
             'doctor_id' => 'required|exists:doctors,id',
             'patient_id' => 'required|exists:patients,id',
-            'recipe_name' => 'required|string|min:3|max:25',
-            'recipe_date' => 'required',
-            'instructions' => 'required',
+            'report' => 'required',
         ];
     }
 
@@ -33,15 +32,9 @@ class Prescription extends Model
     {
         return $this->belongsTo(Doctor::class, 'doctor_id', 'id');
     }
-
     public function patient()
     {
         return $this->belongsTo(Patient::class, 'patient_id', 'id');
     }
-    public function medicines()
-    {
-        return $this->belongsToMany(Medicine::class, 'medication_prescription')->withPivot('quantity');
-    }
-
 
 }

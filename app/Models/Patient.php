@@ -9,40 +9,51 @@ class Patient extends Model
 {
     use HasFactory;
     protected $fillable=[
+        'user_id',
         'name',
         'birthday',
         'gander',
-        'number_phone',
+        'phone',
         'email',
         'image',
+        'country',
+        'city',
+        'street',
     ];
     public static function rules(){
         return [
-            'name'=>'required|min:3|max:20',
-            'birthday'=>'required',
-            'gander'=>'in:male,female',
-            'number_phone'=>'required',
-            'email'=>'required',
-            // 'image',
+            'user_id' => 'required|exists:users,id',
+            'name' => 'required|String|min:3|max:24',
+            'birthday'=>'required|date|before:today',
+            'gander' => 'in:male,female',
+            'email' => 'required|email',
+            'phone'=>'required|min:9|max:16',
+            'country'=>'required',
+            'city'=>'required',
+            'street'=>'required',
         ];
     }
-    public function addressP(){
-        return $this->hasOne(Patient::class,'patient_id','id')->withDefault();
+    public function user()
+    {
+        return $this->belongsTo(related: User::class)->withDefault();
     }
 
     public function doctors(){
         return $this->belongsToMany(Doctor::class);
     }
+
     public function prescriptions()
     {
         return $this->hasMany(Prescription::class);
     }
+
     public function nurses()
     {
         return $this->belongsToMany(Nurse::class, 'nurse_patient');
     }
-    public function appointments()
+
+    public function reprots()
     {
-        return $this->hasMany(Appointment::class,'patient_id','id');
+        return $this->hasMany(Report::class,'patient_id','id');
     }
 }

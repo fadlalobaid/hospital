@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Department;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,15 +19,19 @@ class NurseFactory extends Factory
     public function definition()
     {
         return [
-            'department_id'=>Department::inRandomOrder()->first()->id,
-            'name'=>$this->faker->words(2,true),
-            'birthday'=>$this->faker->date('Y-m-d'),
-            'gander'=>$this->faker->randomElement([
+            'name' => $this->faker->words(2, true),
+            'user_id'=>User::inRandomOrder()->first()->id,
+            'department_id' => Department::inRandomOrder()->first()->id,
+            'birthday' => $this->faker->date('Y-m-d'),
+            'email' => $this->faker->unique()->safeEmail(),
+            'gander' => $this->faker->randomElement([
                 "male",
-                "female"
+                "female",
             ]),
-            'email'=>$this->faker->safeEmail(),
-            'hours_work'=>$this->faker->randomNumber(1,6),
+            'phone' => $this->faker->unique()->randomNumber(9, true),
+            'country' => $this->faker->countryCode(2),
+            'city'=>$this->faker->city(),
+            'street'=>$this->faker->words(2,true)
         ];
     }
 }

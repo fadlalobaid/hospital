@@ -2,12 +2,18 @@
 @section('title')
 Department - {{ isset($doctor)?'Edit':'Create' }}
 @endsection
+@section('breadcrumbs')
+@parent
+<li class="breadcrumb-item active" aria-current="page"> <a href="{{ route('doctors.index') }}" class="text-success">Doctor</a></li>
+<li class="breadcrumb-item active" aria-current="page">{{ isset($doctor)?'Edit':'Create' }}</li>
 
+@endsection
 @section('content')
-
+{{--    --}}
 
 <div class="col-12 grid-margin stretch-card">
     <div class="card">
+
         @if ($errors->any())
         <div class="alert alert-danger">
             <ol type="1">
@@ -21,7 +27,7 @@ Department - {{ isset($doctor)?'Edit':'Create' }}
         <div class="card-body">
             <h4 class="card-title">Basic form elements</h4>
             <div class="d-grid gap-2 col-6 mx-auto">
-            <a class="nav-link btn btn-outline-success create-new-button" id="createbuttonDropdown"  aria-expanded="false" href="{{ route('doctors.index') }}">Doctors</a>
+                <a class="nav-link btn btn-outline-success create-new-button" id="createbuttonDropdown" aria-expanded="false" href="{{ route('doctors.index') }}">Doctors</a>
             </div>
             <form action="{{ isset($doctor)?route('doctors.update',$doctor->id):route('doctors.store') }}" method="POST" enctype="multipart/form-data" class="forms-sample">
                 @csrf
@@ -32,51 +38,74 @@ Department - {{ isset($doctor)?'Edit':'Create' }}
 
                 <div class="form-group">
                     <x-form.input type="text" name="name" placeholder="Name Doctor" lable="Name Doctor" value="{{ old('name', $doctor->name ?? '') }}" />
-
                 </div>
-
+                <div class="form-group">
+                    <label>User</label>
+                    <select name="user_id" class="form-control">
+                        @foreach ($users as $user)
+                        <option value="{{ $user->id }}" @selected(old('user_id', $doctor->user_id ?? '') == $user->id)>
+                            {{ $user->type }}
+                        </option>
+                        @endforeach
+                    </select>
+                </div>
                 <div class="form-group">
                     <label>Department</label>
                     <select name="department_id" class="form-control">
                         @foreach ($departments as $department)
-                        <option  value="{{ $department->id }}" @selected(old('department_id', $doctor->department_id ?? '') == $department->id)>
+                        <option value="{{ $department->id }}" @selected(old('department_id', $doctor->department_id ?? '') == $department->id)>
                             {{ $department->name }}
                         </option>
                         @endforeach
                     </select>
                 </div>
-
                 <div class="form-group">
-                    <x-form.textarea label="discription" name="discription" rows="10" cols="30"/>
-
+                    <x-form.input type="text" name="specialization" placeholder=" Specialization" lable="Specialization:" value="{{ old('specialization', $doctor->specialization ?? '') }}" />
                 </div>
-
                 <div class="form-group">
-                    <x-form.input type="text" name="Specialization" placeholder="Specialization" lable="Specialization:" value="{{ old('Specialization', $doctor->Specialization ?? '') }}" />
-
-
+                    <x-form.input type="date" name="birthday" placeholder="Birth Date" lable="Birth Date :" value="{{ old('birthday', $doctor->birthday ?? '') }}" />
                 </div>
-
                 <div class="form-group">
                     <x-form.input type="email" name="email" placeholder="Email" lable="Email:" value="{{ old('email', $doctor->email ?? '') }}" />
 
                 </div>
+                <div class="form-group">
+                    <x-form.input type="number" name="phone" placeholder="Phone Number" lable="Phone Number:" value="{{ old('phone', $doctor->phone ?? '') }}" />
 
+                </div>
+                <div class="form-group">
+                    <label for="">Country</label>
+                    <select name="country" class="form-control">
+                        @foreach ($countries as $code => $name)
+                            <option value="{{ $code }}">
+                                {{ $name }}
+                            </option>
+                        @endforeach
+                    </select>
+                    {{--  <x-form.input type="text" name="country" placeholder="Country" lable="Country:" value="{{ old('country', $doctor->country ?? '') }}" />  --}}
 
+                </div>
+                <div class="form-group">
+                    <x-form.input type="text" name="city" placeholder="city" lable="City:" value="{{ old('city', $doctor->city ?? '') }}" />
 
+                </div>
+                <div class="form-group">
+                    <x-form.input type="text" name="street" placeholder="Street" lable="Street:" value="{{ old('phone', $doctor->phone ?? '') }}" />
+
+                </div>
 
                 <div class="form-group">
                     <label for="exampleSelectGender">Gender</label>
-                    <x-form.radio name="gender" :options="[
+                    <x-form.radio name="gander" :options="[
                      'male' => 'male',
                      'female' => 'female',
                     ]" checked="female" />
                 </div>
 
-             
+
 
                 <button type="submit" class="btn btn-primary me-2">
-                   {{isset($doctor)?'Edit':'ADD'}}
+                    {{isset($doctor)?'Edit':'ADD'}}
                 </button>
 
             </form>

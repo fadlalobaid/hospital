@@ -13,9 +13,21 @@ class DepartmentsController extends Controller
 
     public function index()
     {
-        $departments = department::with(['doctors'])
-            ->withCount('doctors')
-            ->paginate(10);
+        $request = request();
+        $query = Department::query();
+        $name = $request->query('name');
+        $status = $request->query('status');
+        if ($name) {
+            $query->where('name', 'LIKE', "%{$name}%");
+        }
+        if ($status) {
+            $query->whereStatus($status);
+        }
+
+        $departments = $query->withCount('doctors')->paginate(7);
+        // $departments = department::with(['doctors'])
+        //     ->withCount('doctors')
+        //     ->paginate(10);
         return view('dashboard.departments.index', ['departments' => $departments]);
     }
 
@@ -38,7 +50,7 @@ class DepartmentsController extends Controller
 
     public function show($id)
     {
-        $department= Department::find($id);
+        $department = Department::find($id);
         $department->doctors();
         return view('dashboard.departments.show', [
             'department' => $department
@@ -56,14 +68,13 @@ class DepartmentsController extends Controller
 
     public function update(Request $request, $id)
     {
+        //
         $request->validate(Department::rules());
         $departments = Department::find($id);
         $departments->update($request->all());
         $departments = Department::all();
-        return redirect()->route('departemnts.index', [
-            'departments' => $departments
-        ])
-            ->with('info', "Departments Updated Success");
+        return redirect()->route('departemnts.index')
+            ->with('info', " Updated Success");
     }
 
     public function destroy($id)

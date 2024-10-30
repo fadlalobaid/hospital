@@ -112,7 +112,7 @@
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item preview-item">
                                     <div class="preview-thumbnail">
-                                        <img src="{{ asset('assets/images/faces/face4.jpg') }}" alt="image" class="rounded-circle profile-pic">
+                                        <img src="{{ asset('assets/images/fadllogo.png') }}" alt="image" class="rounded-circle profile-pic">
                                     </div>
                                     <div class="preview-item-content">
                                         <p class="preview-subject ellipsis mb-1">Mark send you a message</p>
@@ -122,7 +122,7 @@
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item preview-item">
                                     <div class="preview-thumbnail">
-                                        <img src="{{ asset('assets/images/faces/face2.jpg') }}" alt="image" class="rounded-circle profile-pic">
+                                        <img src="{{ asset('assets/images/fadllogo.png') }}" alt="image" class="rounded-circle profile-pic">
                                     </div>
                                     <div class="preview-item-content">
                                         <p class="preview-subject ellipsis mb-1">Cregh send you a message</p>
@@ -193,7 +193,7 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link" id="profileDropdown" href="#" data-bs-toggle="dropdown">
                                 <div class="navbar-profile">
-                                    <img class="img-xs rounded-circle" src="{{asset ('assets/images/faces/face15.jpg') }}" alt="">
+                                    <img class="img-xs rounded-circle" src="{{asset ('assets/images/fadllogo.png') }}" alt="">
                                     <p class="mb-0 d-none d-sm-block navbar-profile-name">Henry Klein</p>
                                     <i class="mdi mdi-menu-down d-none d-sm-block"></i>
                                 </div>
@@ -221,7 +221,8 @@
                                     <form action="{{ route('logout') }}" method="post">
                                         @csrf
                                         <div class="preview-item-content">
-                                            <button class="btn btn-outline-danger border border-0" type="submit">Logout</button>
+
+                                            <button class="btn" type="submit">Logout</button>
 
                                         </div>
                                     </form>
@@ -243,46 +244,60 @@
 
 
             <div class="main-panel">
+                <div class="card">
 
+                    <div class="card">
 
-                <section class="content">
-                    @yield('content')
-                </section>
-                <!-- content-wrapper ends -->
-                <!-- partial:partials/_footer.html -->
-                <footer class="footer">
-                    <div class="d-sm-flex justify-content-center justify-content-sm-between">
-                        <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © bootstrapdash.com 2021</span>
-                        <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"> Free <a href="https://www.bootstrapdash.com/bootstrap-admin-template/" target="_blank">Bootstrap admin template</a> from Bootstrapdash.com</span>
+                        {{--  <div class="content-wrapper">  --}}
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                  <li class="breadcrumb-item active" aria-current="page"><a href="{{ route('dashboard.index') }}" class="text-success">Dashboard</a> </li>
+                                  @section('breadcrumbs')
+
+                                    @show
+                                </ol>
+                              </nav>
+
+                            <section class="content">
+                                @yield('content')
+                            </section>
+                        </div>
                     </div>
-                </footer>
-                <!-- partial -->
-            </div>
+                    <!-- content-wrapper ends -->
+                    <!-- partial:partials/_footer.html -->
+                    <footer class="footer">
+                        <div class="d-sm-flex justify-content-center justify-content-sm-between">
+                            <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © bootstrapdash.com 2021</span>
+                            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"> Free <a href="https://www.bootstrapdash.com/bootstrap-admin-template/" target="_blank">Bootstrap admin template</a> from Bootstrapdash.com</span>
+                        </div>
+                    </footer>
+                    <!-- partial -->
+                </div>
 
-            <!-- main-panel ends -->
+                <!-- main-panel ends -->
+            </div>
+            <!-- page-body-wrapper ends -->
         </div>
-        <!-- page-body-wrapper ends -->
-    </div>
-    <!-- container-scroller -->
-    <!-- plugins:js -->
-    <script src="{{ asset('assets/vendors/js/vendor.bundle.base.js') }}"></script>
-    <!-- endinject -->
-    <!-- Plugin js for this page -->
-    <script src="{{ asset('assets/vendors/chart.js/Chart.min.js') }}"></script>
-    <script src="{{ asset('assets/vendors/progressbar.js/progressbar.min.js') }}"></script>
-    <script src="{{ asset('assets/vendors/jvectormap/jquery-jvectormap.min.js') }}"></script>
-    <script src="{{ asset('assets/vendors/jvectormap/jquery-jvectormap-world-mill-en.js') }}"></script>
-    <script src="{{ asset('assets/vendors/owl-carousel-2/owl.carousel.min.js') }}"></script>
-    <script src="{{ asset('assets/js/jquery.cookie.js') }}" type="text/javascript"></script>
-    <!-- End plugin js for this page -->
-    <!-- inject:js -->
-    <script src="{{ asset('assets/js/off-canvas.js') }}"></script>
-    <script src="{{ asset('assets/js/hoverable-collapse.js') }}"></script>
-    <script src="{{ asset('assets/js/misc.js') }}"></script>
-    <script src="{{ asset('assets/js/settings.js') }}"></script>
-    <script src="{{ asset('assets/js/todolist.js') }}"></script>
-    <!-- endinject -->
-    <!-- Custom js for this page -->
-    <script src="{{ asset('assets/js/dashboard.js') }}"></script>
+        <!-- container-scroller -->
+        <!-- plugins:js -->
+        <script src="{{ asset('assets/vendors/js/vendor.bundle.base.js') }}"></script>
+        <!-- endinject -->
+        <!-- Plugin js for this page -->
+        <script src="{{ asset('assets/vendors/chart.js/Chart.min.js') }}"></script>
+        <script src="{{ asset('assets/vendors/progressbar.js/progressbar.min.js') }}"></script>
+        <script src="{{ asset('assets/vendors/jvectormap/jquery-jvectormap.min.js') }}"></script>
+        <script src="{{ asset('assets/vendors/jvectormap/jquery-jvectormap-world-mill-en.js') }}"></script>
+        <script src="{{ asset('assets/vendors/owl-carousel-2/owl.carousel.min.js') }}"></script>
+        <script src="{{ asset('assets/js/jquery.cookie.js') }}" type="text/javascript"></script>
+        <!-- End plugin js for this page -->
+        <!-- inject:js -->
+        <script src="{{ asset('assets/js/off-canvas.js') }}"></script>
+        <script src="{{ asset('assets/js/hoverable-collapse.js') }}"></script>
+        <script src="{{ asset('assets/js/misc.js') }}"></script>
+        <script src="{{ asset('assets/js/settings.js') }}"></script>
+        <script src="{{ asset('assets/js/todolist.js') }}"></script>
+        <!-- endinject -->
+        <!-- Custom js for this page -->
+        <script src="{{ asset('assets/js/dashboard.js') }}"></script>
 </body>
 </html>

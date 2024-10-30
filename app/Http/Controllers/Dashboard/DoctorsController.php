@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Models\Department;
 use App\Models\Doctor;
+use App\Models\User;
 use Symfony\Component\Intl\Countries;
 use Illuminate\Http\Request;
 
@@ -13,22 +14,46 @@ class DoctorsController extends Controller
 
     public function index()
     {
-        $doctors = Doctor::with(['department'])->paginate(7);
+
+        $request = request();
+        $query = Doctor::query();
+        $name = $request->query('name');
+        $spec = $request->query('specialization');
+        $country = $request->query('country');
+        $gander = $request->query('gander');
+        if ($name) {
+            $query->where('name', 'LIKE', "%{$name}%");
+        }
+        if ($spec) {
+            $query->where('specialization', 'LIKE', "%{$spec}%");
+        }
+        if ($country) {
+            $query->where('country', 'LIKE', "%{$country}%");
+        }
+          if($gander){
+            $query->whereGander($gander);
+          }
+        $doctors = $query->with(['department'])->paginate(5);
+        // $doctors = Doctor::with(['department'])->paginate(7);
         return view('dashboard.doctors.index', [
-            'doctors' => $doctors
+            'doctors' => $doctors,
+            'countries' => Countries::getNames(2)
         ]);
     }
 
 
     public function create()
     {
-        $countries = Countries::getNames();
-        $doctors = Doctor::all();
+
+
         $departments = Department::all();
         return view('dashboard.doctors.create_edit', [
             'departments' => $departments,
-            'doctors' => $doctors,
-            'countries'=>$countries
+            'users' => User::all(),
+            'countries' => Countries::getNames(),
+
+
+
         ]);
     }
 
@@ -41,9 +66,10 @@ class DoctorsController extends Controller
     }
 
 
-    public function show($id)
+    public function show(Doctor $doctor)
     {
-        //
+        $doctor->reports();
+        return view('dashboard.doctors.show', ['doctor' => $doctor]);
     }
 
 
@@ -52,7 +78,10 @@ class DoctorsController extends Controller
         $departments = Department::all();
         return view('dashboard.doctors.create_edit', [
             'doctor' => $doctor,
-            'departments' => $departments
+            'departments' => $departments,
+            'users' => User::all(),
+            'countries' => Countries::getNames()
+
         ]);
     }
 
@@ -63,9 +92,7 @@ class DoctorsController extends Controller
         $doctors = Doctor::find($id);
         $doctors->update($request->all());
         $doctors = Doctor::all();
-        return redirect()->route('doctors.index', [
-            'doctors' => $doctors
-        ])
+        return redirect()->route('doctors.index')
             ->with('info', 'Doctor update successfuly');
     }
 
@@ -75,9 +102,7 @@ class DoctorsController extends Controller
         $doctor = Doctor::find($id);
         $doctor->delete();
         $doctor = Doctor::all();
-        return redirect()->route('doctors.index', [
-            'doctor' => $doctor
-        ])
+        return redirect()->route('doctors.index')
             ->with('danger', 'Doctor Delete successfuly');
     }
 }

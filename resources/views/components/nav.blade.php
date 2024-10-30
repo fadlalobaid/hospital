@@ -1,18 +1,18 @@
-<nav class="sidebar sidebar-offcanvas" id="sidebar">
+    <nav class="sidebar sidebar-offcanvas" id="sidebar">
     <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
-        <a class="sidebar-brand brand-logo" href="index.html"><img src="{{ asset('assets/images/logo.svg') }}" alt="logo" /></a>
-        <a class="sidebar-brand brand-logo-mini" href="index.html"><img src="{{asset ('assets/images/logo-mini.svg') }}" alt="logo" /></a>
+        <a class="sidebar-brand brand-logo" href="index.html"><img src="{{ asset('assets/images/hospital1.svg') }}" alt="logo" /></a>
+        <a class="sidebar-brand brand-logo-mini" href="index.html"><img src="{{asset ('assets/images/hospital1.svg') }}" alt="logo" /></a>
     </div>
     <ul class="nav">
         <li class="nav-item profile">
             <div class="profile-desc">
                 <div class="profile-pic">
                     <div class="count-indicator">
-                        <img class="img-xs rounded-circle " src="{{asset ('assets/images/faces/face15.jpg') }}" alt="">
+                        <img class="img-xs rounded-circle " src="{{asset ('assets/images/fadllogo.png')}}" alt="">
                         <span class="count bg-danger"></span>
                     </div>
                     <div class="profile-name">
-                        <h5 class="mb-0 font-weight-normal">Henry Klein</h5>
+                        <h5 class="mb-0 font-weight-normal">{{ config('app.name') }}</h5>
                         <span>Gold Member</span>
                     </div>
                 </div>
@@ -49,8 +49,9 @@
                         </div>
                         <form action="{{ route('logout') }}" method="post">
                             @csrf
-                            <div class="preview-item-content">
-                                <button class="btn btn-outline-danger border border-0" type="submit">Logout</button>
+                            <div class="preview-subject ellipsis mb-1 text-small">
+
+                                <button class="btn " type="submit">Logout</button>
 
                             </div>
                         </form>
@@ -66,7 +67,7 @@
         @foreach($items as $item)
         <li class="nav-item menu-items">
             <a href="{{ route($item['route']) }}" class="nav-link
-            {{--  {{ $item['route']==$active ? 'active':'' }}  --}}
+            {{ $item['route']==$active ? 'bg-dark bg-gradient':'' }}
             ">
                 <span class="menu-icon">
                     <i class="{{ $item['icon'] }}"></i>
@@ -77,9 +78,6 @@
             </a>
             <div class="collapse" id="ui-basic">
                 <ul class="nav flex-column sub-menu">
-
-
-
                 </ul>
             </div>
 

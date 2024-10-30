@@ -13,14 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('doctor_nurse', function (Blueprint $table) {
-
+        Schema::create('reports', function (Blueprint $table) {
+            $table->id();
+            $table->date('date_report')->nullable();
+            $table->time('time_report')->nullable();
             $table->foreignId('doctor_id')->constrained('doctors')->cascadeOnDelete(); //
-            $table->foreignId('nurse_id')->constrained('nurses')->cascadeOnDelete(); // and
-            $table->primary([
-                'doctor_id',
-                'nurse_id'
-            ]);
+            $table->foreignId('patient_id')->constrained('patients')->cascadeOnDelete(); //
+            $table->text('report');
+            $table->timestamps();
         });
     }
 
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('doctor_nurse');
+        Schema::dropIfExists('reports');
     }
 };

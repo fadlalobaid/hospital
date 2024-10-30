@@ -10,7 +10,6 @@ class Medicine extends Model
     use HasFactory;
     protected $fillable = [
         'medicine_name',
-        'dosage',
         'date_created',
         'date_end',
         'manufacturer',
@@ -21,16 +20,15 @@ class Medicine extends Model
     {
         return [
             'medicine_name'=>'required',
-            'dosage'=>'required',
-            'date_created'=>'required',
-            'date_end'=>'required',
+            'date_created'=>'required','date','befor:today',
+            'date_end'=>'required','date','after:today',
             'manufacturer'=>'required',
-            'quantity'=>'required',
+            'quantity'=>'required|min:0',
             'price'=>'required',
         ];
     }
     public function prescriptions()
     {
-        return $this->belongsToMany(Prescription::class, 'medication_prescription');
+        return $this->belongsToMany(Prescription::class, 'medication_prescription')->withPivot('quantity');
     }
 }

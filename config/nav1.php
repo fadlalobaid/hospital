@@ -30,5 +30,16 @@ return[
     'route'=>'prescriptions.index',
     'icon'=>'mdi mdi-file-document-box'
    ],
+
+   [
+    'name'=>'Reports',
+    'route'=>'reports.index',
+    'icon'=>'mdi mdi-note'
+   ],
+   [
+    'name'=>'Service',
+    'route'=>'services.index',
+    'icon'=>'mdi mdi-buffer'
+   ],
 ];
 

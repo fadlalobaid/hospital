@@ -2,7 +2,12 @@
 @section('title')
 Prescription - index
 @endsection
+@section('breadcrumbs')
+@parent
+<li class="breadcrumb-item active" aria-current="page">Prescription</li>
+<li class="breadcrumb-item active" aria-current="page">index</li>
 
+@endsection
 @section('content')
 
 
@@ -75,9 +80,9 @@ Prescription - index
                     </tbody>
 
                 </table>
-                {{ $prescriptions->links() }}
+
             </div>
-        </div>
+        </div> {{ $prescriptions->links() }}
     </div>
 </div>
 @endsection

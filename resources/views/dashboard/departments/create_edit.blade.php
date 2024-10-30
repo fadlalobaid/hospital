@@ -2,7 +2,12 @@
 @section('title')
 Department - {{ isset($department)?'Edit':'Create' }}
 @endsection
+@section('breadcrumbs')
+@parent
+<li class="breadcrumb-item active" aria-current="page"> <a href="{{ route('departemnts.index') }}" class="text-success">Department</a> </li>
+<li class="breadcrumb-item active" aria-current="page">{{ isset($department)?'Edit':'Create' }}</li>
 
+@endsection
 @section('content')
 
 
@@ -22,7 +27,7 @@ Department - {{ isset($department)?'Edit':'Create' }}
             <h4 class="card-title">Add Patients</h4>
 
             <div class="d-grid gap-2 col-6 mx-auto">
-            <a class="nav-link btn btn-outline-success create-new-button mb-3" id="createbuttonDropdown"  aria-expanded="false" href="{{ route('departemnts.index') }}">Department</a>
+                <a class="nav-link btn btn-outline-success create-new-button mb-3" id="createbuttonDropdown" aria-expanded="false" href="{{ route('departemnts.index') }}">Department</a>
             </div>
             <form action="{{isset($department)? route('departemnts.update',$department->id):route('departemnts.store') }}" method="POST" enctype="multipart/form-data" class="forms-sample">
                 @csrf
@@ -37,7 +42,7 @@ Department - {{ isset($department)?'Edit':'Create' }}
                 </div>
 
                 <div class="form-group ">
-                    <x-form.textarea label="description" name="description" rows="10" cols="30"/>
+                    <x-form.textarea label="description" name="description" rows="10" cols="30" />
 
                 </div>
 
@@ -54,7 +59,7 @@ Department - {{ isset($department)?'Edit':'Create' }}
 
 
                 <button type="submit" class="btn btn-primary me-2">
-                  {{ isset($department)?'Edit':'ADD' }}
+                    {{ isset($department)?'Edit':'ADD' }}
                 </button>
 
             </form>

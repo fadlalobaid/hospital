@@ -2,36 +2,68 @@
 @section('title')
 Doctors - index
 @endsection
+@section('breadcrumbs')
+@parent
+<li class="breadcrumb-item active" aria-current="page">Doctor</li>
+<li class="breadcrumb-item active" aria-current="page">index</li>
 
+@endsection
 @section('content')
-
+{{--    --}}
 
 <div class="col-lg-12 grid-margin stretch-card">
 
     <div class="card">
 
-<x-alert type="success" />
-<x-alert type="info" />
-<x-alert type="danger" />
+            <form action="{{ URL::current() }}" class="row g-3 m-2">
+                <div class="form-group col-auto">
+                    <x-form.input type="text" name="name" placeholder="Name Doctor" :value="request('name')" />
+                </div>
+                <div class="form-group col-auto">
+                    <x-form.input type="text" name="specialization" placeholder="specialization"  :value="request('specialization')" />
+                </div>
+                <div class="form-group col-auto">
+                    <x-form.input type="text" name="country" placeholder="country" :value="request('country')" />
+                </div>
+
+                <div class="form-group col-auto">
+
+                    <select name="gander" id="" class="form-control">
+                        <option value="">Gander</option>
+                        <option value="male" @selected(request('gander')=='male' )>male</option>
+                        <option value="female" @selected(request('gander')=='female' )>female</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-outline-secondary  col-auto m-3">Filter</button>
+            </form>
+
+        <x-alert type="success" />
+        <x-alert type="info" />
+        <x-alert type="danger" />
         <div class="card-body">
             <h4 class="card-title">Doctors Table</h4>
             <div class="d-grid gap-2 col-6 mx-auto">
-            <a class="nav-link btn btn-outline-success create-new-button" id="createbuttonDropdown"  aria-expanded="false" href="{{ route('doctors.create') }}">
-                 <i class="mdi mdi-account-plus"></i> <span>Add Doctors</span>
-            </a>
+                <a class="nav-link btn btn-outline-success create-new-button" id="createbuttonDropdown" aria-expanded="false" href="{{ route('doctors.create') }}">
+                    <i class="mdi mdi-account-plus"></i> <span>Add Doctors</span>
+                </a>
             </div>
             </p>
             <div class="table-responsive">
                 <table class="table table-dark">
                     <thead>
                         <tr>
-                            <th> Name Doctor</th>
+                            <th>Name Doctor</th>
                             <td>Name Department</td>
-                            <th> discription </th>
+                            <td>specialization</td>
+                            <th> Birth Data </th>
                             <th> Gander </th>
-                            <th> Specialization </th>
+                            <th>Number Phone </th>
                             <th>email </th>
-                            <th  > Satting </th>
+                            <th>Country</th>
+                            <th>City</th>
+                            <th>Street</th>
+                            <th>Reports</th>
+                            <th> Satting </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -39,14 +71,23 @@ Doctors - index
                         <tr>
                             <td> {{ $doctor->name }} </td>
                             <td><a href="{{ route('departemnts.index') }}">{{ $doctor->department->name }}</a></td>
-                            <td>{{$doctor->discription }}</td>
-                            <td> {{ $doctor->gender}}</td>
-                            <td> {{ $doctor->Specialization }}</td>
+                            <td>{{ $doctor->specialization }}</td>
+                            <td>{{$doctor->birthday }}</td>
+                            <td> {{ $doctor->gander}}</td>
+                            <td> {{ $doctor->phone }}</td>
                             <td> {{ $doctor->email }}</td>
-                             <td >
-                             <a href="{{ route('doctors.edit',$doctor->id) }}" class="btn btn-success m-1">
-                                <i class="mdi mdi-auto-fix"></i>
-                             </a>
+                            <td> {{ $doctor->country }}</td>
+                            <td> {{ $doctor->city }}</td>
+                            <td> {{ $doctor->street }}</td>
+                            <td>
+                                <a href="{{ route('doctors.show', $doctor->id) }}" class="btn btn-warning h-25">
+                                    <i class="mdi mdi-eye fs-6"></i>
+                                </a>
+                            </td>
+                            <td>
+                                <a href="{{ route('doctors.edit',$doctor->id) }}" class="btn btn-success m-1">
+                                    <i class="mdi mdi-auto-fix"></i>
+                                </a>
 
                                 <form action="{{ route('doctors.destroy', $doctor->id) }}" method="post" class="m-1">
                                     @csrf
@@ -64,9 +105,10 @@ Doctors - index
 
                     </tbody>
                 </table>
-                <div class="m-2">{{ $doctors->links() }}</div>
+
 
             </div>
+            <div class="m-2">{{ $doctors->links() }}</div>
         </div>
     </div>
 </div>

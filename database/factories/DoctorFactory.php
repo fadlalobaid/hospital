@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Department;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,15 +19,20 @@ class DoctorFactory extends Factory
     public function definition()
     {
         return [
-            'name'=>$this->faker->words(2,true),
-            'discription'=>$this->faker->words(15,true),
-            'department_id'=>Department::inRandomOrder()->first()->id,
+            'name' => $this->faker->words(2, true),
+            'department_id' => Department::inRandomOrder()->first()->id,
+            'user_id' => User::inRandomOrder()->first()->id,
+            'specialization'=>$this->faker->words(1,true),
+            'birthday' => $this->faker->date('Y-m-d'),
             'email' => $this->faker->unique()->safeEmail(),
-            'gender'=>$this->faker->randomElement([
+            'gander' => $this->faker->randomElement([
                 "male",
                 "female",
             ]),
-            'Specialization'=>$this->faker->words(1,true),
+            'phone' => $this->faker->unique()->randomNumber(9, true),
+             'country' => $this->faker->countryCode(),
+            'city'=>$this->faker->city(),
+            'street'=>$this->faker->words(2,true)
 
 
         ];

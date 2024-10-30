@@ -2,7 +2,12 @@
 @section('title')
 Department - {{ isset($medicine)?'Edit':'Create' }}
 @endsection
+@section('breadcrumbs')
+@parent
+<li class="breadcrumb-item active" aria-current="page"><a href="{{ route('medicines.index') }}" class="text-success">Medicine</a></li>
+<li class="breadcrumb-item active" aria-current="page">{{ isset($medicine)?'Edit':'Create' }}</li>
 
+@endsection
 @section('content')
 
 
@@ -35,12 +40,6 @@ Department - {{ isset($medicine)?'Edit':'Create' }}
 
                 </div>
 
-
-
-                <div class="form-group ">
-                    <x-form.input type="text" name="dosage" placeholder="dosage" lable="dosage" value="{{ old('dosage',$medicine->dosage ??'') }}"/>
-
-                </div>
 
                 <div class="form-group ">
                     <x-form.input type="date" lable="date_created" name="date_created" placeholder="date_created" value="{{ old('date_created',$medicine->date_created??'') }}"/>

@@ -10,10 +10,25 @@ class MedicinesController extends Controller
 {
 
     public function index()
-    {
+    { $request = request();
+        $query = Medicine::query();
+        $medicine_name = $request->query('medicine_name');
+        $manufacturer = $request->query('manufacturer');
+        $date_end = $request->query('date_end');
+
+        if($medicine_name){
+            $query->where('medicine_name','LIKE',$medicine_name);
+        }
+        if($manufacturer){
+            $query->where('manufacturer','LIKE',$manufacturer);
+        }
+        if($date_end){
+$query->whereDate('date_end','>=',$date_end);
+        }
+        $medicines = $query->paginate(10);
 
         return view('dashboard.medicines.index', [
-            'medicines' => Medicine::paginate(7),
+            'medicines' =>$medicines
         ]);
     }
 

@@ -12,41 +12,46 @@ class Doctor extends Model
     use HasFactory;
     protected $fillable = [
         'department_id',
+        'user_id',
         'name',
+        'specialization',
         'birthday',
-        'Graduation_date',
-        'gender',
-        'Specialization',
+        'gander',
         'email',
         'image',
-        'discription',
         'phone',
-        'languege',
-        'hours_worked',
+        'country',
+        'city',//
+        'street',
     ];
 
     public static function rules()
     {
         return [
             'department_id' => 'required|exists:departments,id',
-            'discription'=>'required',
+            'user_id' => 'required|exists:users,id',
             'name' => 'required|String|min:3|max:24',
-            // 'birthday' => 'required|date',
-            // 'Graduation_date' => 'required|date',    
-            'gender' => 'in:male,female',
-            'Specialization' => 'required|String|min:3|max:50',
+            'specialization'=>'required',
+            'birthday'=>'required|date',
+            'gander' => 'in:male,female',
             'email' => 'required|email',
-            // 'phone' => 'required|number|min:9|max:15',
-            // 'languege' => 'required',
-            // 'hours_worked' => 'required',
-            // 'image' => 'required'
+            'phone'=>'required|min:9|max:16',
+            'country'=>'required',
+            'city'=>'required',
+            'street'=>'required',
+
+
+
 
         ];
     }
-    public function addressD()
+
+
+    public function user()
     {
-        return $this->hasOne(doctor::class, 'doctor_id', 'id')->withDefault();
+        return $this->belongsTo(User::class,'user_id','id');
     }
+
     public function department(){
         return $this->belongsTo(Department::class, 'department_id', 'id');
     }
@@ -61,8 +66,8 @@ class Doctor extends Model
     {
         return $this->belongsToMany(Nurse::class, 'doctor_nurse');
     }
-    public function appointments()
+    public function reports()
     {
-        return $this->hasMany(Appointment::class,'doctor_id','id');
+        return $this->hasMany(Report::class,'doctor_id','id');
     }
 }
