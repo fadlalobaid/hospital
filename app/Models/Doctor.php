@@ -7,12 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Doctor extends Model
 {
+    // protected $primaryKey ='user_id';
 
     protected $table = "doctors";
     use HasFactory;
     protected $fillable = [
         'department_id',
-        'user_id',
+        // 'user_id',
         'name',
         'specialization',
         'birthday',
@@ -29,7 +30,7 @@ class Doctor extends Model
     {
         return [
             'department_id' => 'required|exists:departments,id',
-            'user_id' => 'required|exists:users,id',
+            // 'user_id' => 'required|exists:users,id',
             'name' => 'required|String|min:3|max:24',
             'specialization'=>'required',
             'birthday'=>'required|date',
@@ -47,16 +48,19 @@ class Doctor extends Model
     }
 
 
-    public function user()
-    {
-        return $this->belongsTo(User::class,'user_id','id');
-    }
+    // public function user()
+    // {
+    //     return $this->belongsTo(User::class,'user_id','id');
+    // }
 
     public function department(){
         return $this->belongsTo(Department::class, 'department_id', 'id');
     }
     public function patients(){
         return $this->belongsToMany(Patient::class);
+    }
+    public function appointment(){
+        return $this->belongsToMany(Appointment::class,'doctor_id', 'id');
     }
     public function prescriptions()
     {

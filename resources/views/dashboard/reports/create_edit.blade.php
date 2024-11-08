@@ -24,9 +24,11 @@ report - {{ isset($report)?'Edit':'Create' }}
         </div>
         @endif
         <div class="card-body m-2">
-            <h4 class="card-title">Add report</h4>
-            <div class="d-grid gap-2 col-6 mx-auto">
-                <a class="nav-link btn btn-outline-success create-new-button mb-3" id="createbuttonDropdown" aria-expanded="false" href="{{ route('reports.index') }}">report</a>
+            <h3 class="d-inline">Report</h3>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <a href="{{ route('reports.index') }}" class="btn btn-success fs-5">
+                    Report
+                </a>
             </div>
             <form action="{{ isset($report)?route('reports.update',$report->id):route('reports.store') }}" method="POST" enctype="multipart/form-data" class="forms-sample">
                 @csrf

@@ -9,42 +9,42 @@ Doctors - index
 
 @endsection
 @section('content')
-{{--    --}}
+{{-- --}}
 
 <div class="col-lg-12 grid-margin stretch-card">
 
     <div class="card">
+        {{-- filter  --}}
+        <form action="{{ URL::current() }}" class="row g-3 m-3">
+            <div class="form-group col-auto">
+                <x-form.input type="text" name="name" placeholder="Name Doctor" :value="request('name')" />
+            </div>
+            <div class="form-group col-auto">
+                <x-form.input type="text" name="specialization" placeholder="specialization" :value="request('specialization')" />
+            </div>
+            <div class="form-group col-auto">
+                <x-form.input type="text" name="country" placeholder="country" :value="request('country')" />
+            </div>
 
-            <form action="{{ URL::current() }}" class="row g-3 m-2">
-                <div class="form-group col-auto">
-                    <x-form.input type="text" name="name" placeholder="Name Doctor" :value="request('name')" />
-                </div>
-                <div class="form-group col-auto">
-                    <x-form.input type="text" name="specialization" placeholder="specialization"  :value="request('specialization')" />
-                </div>
-                <div class="form-group col-auto">
-                    <x-form.input type="text" name="country" placeholder="country" :value="request('country')" />
-                </div>
+            <div class="form-group col-auto">
 
-                <div class="form-group col-auto">
-
-                    <select name="gander" id="" class="form-control">
-                        <option value="">Gander</option>
-                        <option value="male" @selected(request('gander')=='male' )>male</option>
-                        <option value="female" @selected(request('gander')=='female' )>female</option>
-                    </select>
-                </div>
-                <button type="submit" class="btn btn-outline-secondary  col-auto m-3">Filter</button>
-            </form>
+                <select name="gander" id="" class="form-control">
+                    <option value="">Gander</option>
+                    <option value="male" @selected(request('gander')=='male' )>male</option>
+                    <option value="female" @selected(request('gander')=='female' )>female</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-outline-secondary  col-auto m-3">Filter</button>
+        </form>
 
         <x-alert type="success" />
         <x-alert type="info" />
         <x-alert type="danger" />
         <div class="card-body">
-            <h4 class="card-title">Doctors Table</h4>
-            <div class="d-grid gap-2 col-6 mx-auto">
-                <a class="nav-link btn btn-outline-success create-new-button" id="createbuttonDropdown" aria-expanded="false" href="{{ route('doctors.create') }}">
-                    <i class="mdi mdi-account-plus"></i> <span>Add Doctors</span>
+            <h3 class="d-inline">Doctors Table</h3>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <a href="{{ route('doctors.create') }}" class="btn btn-success fs-5">
+                    + Add Doctor
                 </a>
             </div>
             </p>
@@ -108,7 +108,7 @@ Doctors - index
 
 
             </div>
-            <div class="m-2">{{ $doctors->links() }}</div>
+            <div class="m-2">{{ $doctors->withQueryString() }}</div>
         </div>
     </div>
 </div>

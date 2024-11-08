@@ -16,9 +16,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('dashboard.index');
-});
 
 
 Route::get('/dashboard', function () {
@@ -34,3 +31,4 @@ Route::middleware('auth')->group(function () {
 Route::resource('/dashboard/doctors',DoctorsController::class)->middleware('auth');
 require __DIR__.'/auth.php';
 require __DIR__.'/dashboard.php';
+require __DIR__.'/front.php';

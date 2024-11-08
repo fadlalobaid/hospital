@@ -39,10 +39,10 @@ class Nurse extends Model
     }
 
 
-    public function user()
-    {
-        return $this->belongsTo(related: User::class);
-    }
+    // public function user()
+    // {
+    //     return $this->belongsTo(related: User::class);
+    // }
     public function department()
     {
         return $this->belongsTo(Department::class, 'department_id', 'id');

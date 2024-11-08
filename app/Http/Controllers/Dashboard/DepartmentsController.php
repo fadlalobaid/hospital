@@ -4,12 +4,10 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Models\Department;
-use App\Models\Doctor;
 use Illuminate\Http\Request;
 
 class DepartmentsController extends Controller
 {
-
 
     public function index()
     {
@@ -31,13 +29,11 @@ class DepartmentsController extends Controller
         return view('dashboard.departments.index', ['departments' => $departments]);
     }
 
-
     public function create()
     {
         $depatment = Department::all();
         return view('dashboard.departments.create_edit', ['depatment' => $depatment]);
     }
-
 
     public function store(Request $request)
     {
@@ -47,24 +43,21 @@ class DepartmentsController extends Controller
         return redirect()->route('departemnts.index')->with('success', "departemnt created successfully");
     }
 
-
     public function show($id)
     {
         $department = Department::find($id);
         $department->doctors();
         return view('dashboard.departments.show', [
-            'department' => $department
+            'department' => $department,
         ]);
     }
-
 
     public function edit(Department $department)
     {
         return view('dashboard.departments.create_edit', [
-            'department' => $department
+            'department' => $department,
         ]);
     }
-
 
     public function update(Request $request, $id)
     {

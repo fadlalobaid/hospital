@@ -19,9 +19,9 @@ class PatientFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->words(2, true),
-            'user_id' => User::inRandomOrder()->first()->id,
-            'birthday' => $this->faker->date('Y-m-d'),
+            'name' => $this->faker->name(),
+            // 'user_id' => User::inRandomOrder()->first()->id,
+            'birthday' => $this->faker->date('Y-m-d','now'),
             'email' => $this->faker->unique()->safeEmail(),
             'gander' => $this->faker->randomElement([
                 "male",
@@ -30,7 +30,7 @@ class PatientFactory extends Factory
             'phone' => $this->faker->unique()->randomNumber(9, true),
             'country' => $this->faker->countryCode(),
             'city'=>$this->faker->city(),
-            'street'=>$this->faker->words(2,true)
+            'street'=>$this->faker->streetName()
 
 
         ];

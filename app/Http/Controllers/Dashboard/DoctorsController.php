@@ -6,8 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Department;
 use App\Models\Doctor;
 use App\Models\User;
-use Symfony\Component\Intl\Countries;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Symfony\Component\Intl\Countries;
 
 class DoctorsController extends Controller
 {
@@ -30,33 +31,28 @@ class DoctorsController extends Controller
         if ($country) {
             $query->where('country', 'LIKE', "%{$country}%");
         }
-          if($gander){
+        if ($gander) {
             $query->whereGander($gander);
-          }
+        }
         $doctors = $query->with(['department'])->paginate(5);
         // $doctors = Doctor::with(['department'])->paginate(7);
         return view('dashboard.doctors.index', [
             'doctors' => $doctors,
-            'countries' => Countries::getNames(2)
+            'countries' => Countries::getNames(2),
         ]);
     }
-
 
     public function create()
     {
 
-
         $departments = Department::all();
         return view('dashboard.doctors.create_edit', [
             'departments' => $departments,
-            'users' => User::all(),
+            // 'users' => User::all(),
             'countries' => Countries::getNames(),
-
-
 
         ]);
     }
-
 
     public function store(Request $request)
     {
@@ -65,13 +61,11 @@ class DoctorsController extends Controller
         return redirect()->route('doctors.index')->with('success', 'Doctor created successfully');
     }
 
-
     public function show(Doctor $doctor)
     {
         $doctor->reports();
         return view('dashboard.doctors.show', ['doctor' => $doctor]);
     }
-
 
     public function edit(Doctor $doctor)
     {
@@ -79,12 +73,11 @@ class DoctorsController extends Controller
         return view('dashboard.doctors.create_edit', [
             'doctor' => $doctor,
             'departments' => $departments,
-            'users' => User::all(),
-            'countries' => Countries::getNames()
+            // 'users' => User::all(),
+            'countries' => Countries::getNames(),
 
         ]);
     }
-
 
     public function update(Request $request, $id)
     {
@@ -95,7 +88,6 @@ class DoctorsController extends Controller
         return redirect()->route('doctors.index')
             ->with('info', 'Doctor update successfuly');
     }
-
 
     public function destroy($id)
     {

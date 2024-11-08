@@ -17,10 +17,11 @@ Prescription - index
         <x-alert type="info" />
         <x-alert type="danger" />
         <div class="card-body">
-            <h4 class="card-title">Prescription</h4>
-            <div class="d-grid gap-2 col-6 mx-auto">
-
-                <a class="nav-link btn btn-outline-success " id="createbuttonDropdown" aria-expanded="false" href="{{ route('prescriptions.create') }}">Add Prescription</a>
+            <h3 class="d-inline">Prescriptions Table</h3>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <a href="{{ route('prescriptions.create') }}" class="btn btn-success fs-5">
+                    + Add prescription
+                </a>
             </div>
             </p>
             <div class="table-responsive">
@@ -50,7 +51,7 @@ Prescription - index
                             <td>
                                 {{ $item->recipe_date }}
                             </td>
-                            <td>
+                            <td class="text-wrap">
                                 {{ $item->instructions }}
                             </td>
                             <td>
@@ -82,7 +83,7 @@ Prescription - index
                 </table>
 
             </div>
-        </div> {{ $prescriptions->links() }}
+        </div> {{ $prescriptions->withQueryString() }}
     </div>
 </div>
 @endsection

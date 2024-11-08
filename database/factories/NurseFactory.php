@@ -19,10 +19,10 @@ class NurseFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->words(2, true),
-            'user_id'=>User::inRandomOrder()->first()->id,
+            'name' => $this->faker->name(),
+            // 'user_id'=>User::inRandomOrder()->first()->id,
             'department_id' => Department::inRandomOrder()->first()->id,
-            'birthday' => $this->faker->date('Y-m-d'),
+            'birthday' => $this->faker->date('Y-m-d','now'),
             'email' => $this->faker->unique()->safeEmail(),
             'gander' => $this->faker->randomElement([
                 "male",
@@ -31,7 +31,7 @@ class NurseFactory extends Factory
             'phone' => $this->faker->unique()->randomNumber(9, true),
             'country' => $this->faker->countryCode(2),
             'city'=>$this->faker->city(),
-            'street'=>$this->faker->words(2,true)
+            'street'=>$this->faker->streetName()
         ];
     }
 }

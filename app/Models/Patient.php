@@ -9,7 +9,7 @@ class Patient extends Model
 {
     use HasFactory;
     protected $fillable=[
-        'user_id',
+        // 'user_id',
         'name',
         'birthday',
         'gander',
@@ -22,7 +22,7 @@ class Patient extends Model
     ];
     public static function rules(){
         return [
-            'user_id' => 'required|exists:users,id',
+            // 'user_id' => 'required|exists:users,id',
             'name' => 'required|String|min:3|max:24',
             'birthday'=>'required|date|before:today',
             'gander' => 'in:male,female',
@@ -33,10 +33,10 @@ class Patient extends Model
             'street'=>'required',
         ];
     }
-    public function user()
-    {
-        return $this->belongsTo(related: User::class)->withDefault();
-    }
+    // public function user()
+    // {
+    //     return $this->belongsTo(related: User::class)->withDefault();
+    // }
 
     public function doctors(){
         return $this->belongsToMany(Doctor::class);
@@ -45,6 +45,9 @@ class Patient extends Model
     public function prescriptions()
     {
         return $this->hasMany(Prescription::class);
+    }
+    public function appointment(){
+        return $this->belongsToMany(Appointment::class,'patient_id','id');
     }
 
     public function nurses()

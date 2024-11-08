@@ -24,9 +24,11 @@ Patients - {{ isset($patient)?'Edit':'Create' }}
         </div>
         @endif
         <div class="card-body">
-            <h4 class="card-title">Add Patients</h4>
-            <div class="d-grid gap-2 col-6 mx-auto">
-            <a class="nav-link btn btn-outline-success create-new-button mb-3" id="createbuttonDropdown"  aria-expanded="false" href="{{ route('patients.index') }}">Patients</a>
+            <h3 class="d-inline">Patient</h3>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <a href="{{ route('patients.index') }}" class="btn btn-success fs-5">
+                    Patient
+                </a>
             </div>
             <form action="{{ isset($patient)?route('patients.update',$patient->id):route('patients.store') }}" method="POST" enctype="multipart/form-data" class="forms-sample">
              @csrf
@@ -40,7 +42,7 @@ Patients - {{ isset($patient)?'Edit':'Create' }}
 
             </div>
 
-            <div class="form-group">
+            {{--  <div class="form-group">
                 <label>User</label>
                 <select name="user_id" class="form-control">
                     @foreach ($users as $user)
@@ -49,7 +51,7 @@ Patients - {{ isset($patient)?'Edit':'Create' }}
                     </option>
                     @endforeach
                 </select>
-            </div>
+            </div>  --}}
 
             <div class="form-group">
                 <label>Department</label>

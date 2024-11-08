@@ -19,9 +19,9 @@ return new class extends Migration
             ->nullable()
             ->constrained('departments')
             ->cascadeOnDelete();
-            $table->foreignId('user_id')
-            ->constrained('users')
-            ->cascadeOnDelete();
+            // $table->foreignId('user_id')
+            // ->constrained('users')
+            // ->cascadeOnDelete();
         $table->string('name');
         $table->date('birthday')->nullable();
         $table->string('image')->nullable();
@@ -32,7 +32,7 @@ return new class extends Migration
         $table->string('city')->nullable();
         $table->string('street')->nullable();
 
-        
+
             $table->timestamps();
         });
     }

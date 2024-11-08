@@ -25,10 +25,13 @@ Department - {{ isset($doctor)?'Edit':'Create' }}
         </div>
         @endif
         <div class="card-body">
-            <h4 class="card-title">Basic form elements</h4>
-            <div class="d-grid gap-2 col-6 mx-auto">
-                <a class="nav-link btn btn-outline-success create-new-button" id="createbuttonDropdown" aria-expanded="false" href="{{ route('doctors.index') }}">Doctors</a>
+            <h3 class="d-inline">Doctor</h3>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <a href="{{ route('doctors.index') }}" class="btn btn-success fs-5">
+                 Doctor
+                </a>
             </div>
+
             <form action="{{ isset($doctor)?route('doctors.update',$doctor->id):route('doctors.store') }}" method="POST" enctype="multipart/form-data" class="forms-sample">
                 @csrf
 
@@ -39,16 +42,16 @@ Department - {{ isset($doctor)?'Edit':'Create' }}
                 <div class="form-group">
                     <x-form.input type="text" name="name" placeholder="Name Doctor" lable="Name Doctor" value="{{ old('name', $doctor->name ?? '') }}" />
                 </div>
-                <div class="form-group">
+                {{--  <div class="form-group">
                     <label>User</label>
                     <select name="user_id" class="form-control">
                         @foreach ($users as $user)
-                        <option value="{{ $user->id }}" @selected(old('user_id', $doctor->user_id ?? '') == $user->id)>
+                        <option value="{{ $user->id }}" @selected(old('user_id', $doctor->id ?? '') == $user->id )>
                             {{ $user->type }}
                         </option>
                         @endforeach
                     </select>
-                </div>
+                </div>  --}}
                 <div class="form-group">
                     <label>Department</label>
                     <select name="department_id" class="form-control">

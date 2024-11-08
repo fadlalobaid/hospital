@@ -19,12 +19,12 @@ Department - index
                     <x-form.input type="text" name="name" placeholder="Name Department" :value="request('name')" />
                 </div>
 
-                <div class="form-group col-auto" >
+                <div class="form-group col-auto">
 
                     <select name="status" id="" class="form-control">
                         <option value="">Status</option>
-                        <option value="active" @selected(request('status')=='active')>Active</option>
-                        <option value="inactive" @selected(request('status')=='inactive')>Inactive</option>
+                        <option value="active" @selected(request('status')=='active' )>Active</option>
+                        <option value="inactive" @selected(request('status')=='inactive' )>Inactive</option>
                     </select>
                 </div>
                 <button type="submit" class="btn btn-outline-secondary  col-auto m-3">Filter</button>
@@ -35,10 +35,11 @@ Department - index
             <x-alert type="info" />
             <x-alert type="danger" />
             <div class="card-body">
-                <h4 class="card-title">Department</h4>
-                <div class="d-grid gap-2 col-6 mx-auto">
-
-                    <a class="nav-link btn btn-outline-success " id="createbuttonDropdown" aria-expanded="false" href="{{ route('departemnts.create') }}">Add Department</a>
+                <h3 class="d-inline">Department Table</h3>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <a href="{{ route('departemnts.create') }}" class="btn btn-success fs-5">
+                        + Add Department
+                    </a>
                 </div>
                 </p>
                 <div class="table-responsive">
@@ -52,8 +53,6 @@ Department - index
                                 <th> status </th>
                                 <th> Satting </th>
                                 <th> Show </th>
-
-
                             </tr>
                         </thead>
                         <tbody>
@@ -96,7 +95,7 @@ Department - index
                     </table>
 
                 </div>
-                <div class="m-2">{{ $departments->links() }}</div>
+                <div class="m-2">{{ $departments->withQueryString() }}</div>
             </div>
         </div>
     </div>

@@ -39,10 +39,11 @@ Nurse - index
         <x-alert type="info" />
         <x-alert type="danger" />
         <div class="card-body">
-            <h4 class="card-title">Department</h4>
-            <div class="d-grid gap-2 col-6 mx-auto">
-
-                <a class="nav-link btn btn-outline-success " id="createbuttonDropdown" aria-expanded="false" href="{{ route('nurses.create') }}">Add Nurse</a>
+            <h3 class="d-inline">nurses Table</h3>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <a href="{{ route('nurses.create') }}" class="btn btn-success fs-5">
+                    + Add nurse
+                </a>
             </div>
             </p>
             <div class="table-responsive">
@@ -104,7 +105,7 @@ Nurse - index
                 </table>
 
             </div>
-            <div class="m-2" >{{ $nurses->links() }}</div>
+            <div class="m-2" >{{ $nurses->withQueryString() }}</div>
         </div>
     </div>
 </div>

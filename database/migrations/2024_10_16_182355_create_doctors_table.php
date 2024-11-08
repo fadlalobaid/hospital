@@ -19,9 +19,9 @@ return new class extends Migration
                 ->nullable()
                 ->constrained('departments')
                 ->cascadeOnDelete();
-            $table->foreignId('user_id')
-                ->constrained('users')
-                ->cascadeOnDelete();
+            // $table->foreignId('user_id')
+            //     ->constrained('users')
+            //     ->cascadeOnDelete();
             $table->string('name');
             $table->string('specialization')->nullable();
             $table->date('birthday')->nullable();

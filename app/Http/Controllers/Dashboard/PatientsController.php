@@ -43,7 +43,7 @@ class PatientsController extends Controller
     {
         return view('dashboard.patients.create_edit', [
             'departments' => Department::all(),
-            'users' => User::all(),
+            // 'users' => User::all(),
             'countries' => Countries::getNames()
 
         ]);
@@ -78,7 +78,7 @@ class PatientsController extends Controller
         return view('dashboard.patients.create_edit', [
             'patient' => $patient,
             'departments' => Department::all(),
-            'users' => User::all(),
+            // 'users' => User::all(),
             'countries' => Countries::getNames()
         ]);
     }

@@ -41,5 +41,10 @@ return[
     'route'=>'services.index',
     'icon'=>'mdi mdi-buffer'
    ],
+   [
+    'name'=>'Appointment',
+    'route'=>'appointments.index',
+    'icon'=>'mdi mdi-calendar-multiple'
+   ],
 ];
 

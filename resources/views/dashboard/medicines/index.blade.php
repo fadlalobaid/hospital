@@ -31,10 +31,10 @@ Medicine - index
         <x-alert type="info" />
         <x-alert type="danger" />
         <div class="card-body">
-            <h4 class="card-title">Medicine Table</h4>
-            <div class="d-grid gap-2 col-6 mx-auto">
-                <a class="nav-link btn btn-outline-success create-new-button" id="createbuttonDropdown" aria-expanded="false" href="{{ route('medicines.create') }}">
-                    <i class="mdi mdi-account-plus"></i> <span>Add Medicine</span>
+            <h3 class="d-inline">medicines Table</h3>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <a href="{{ route('medicines.create') }}" class="btn btn-success fs-5">
+                    + Add medicine
                 </a>
             </div>
             </p>
@@ -86,7 +86,7 @@ Medicine - index
 
 
             </div>
-            <div class="m-2">{{ $medicines->links() }}</div>
+            <div class="m-2">{{ $medicines->withQueryString() }}</div>
         </div>
     </div>
 </div>

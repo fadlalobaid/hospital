@@ -24,20 +24,21 @@ Department - {{ isset($department)?'Edit':'Create' }}
         </div>
         @endif
         <div class="card-body">
-            <h4 class="card-title">Add Patients</h4>
-
-            <div class="d-grid gap-2 col-6 mx-auto">
-                <a class="nav-link btn btn-outline-success create-new-button mb-3" id="createbuttonDropdown" aria-expanded="false" href="{{ route('departemnts.index') }}">Department</a>
+            <h3 class="d-inline">Departmet</h3>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <a href="{{ route('departemnts.index') }}" class="btn btn-success fs-5">
+                   Department
+                </a>
             </div>
-            <form action="{{isset($department)? route('departemnts.update',$department->id):route('departemnts.store') }}" method="POST" enctype="multipart/form-data" class="forms-sample">
-                @csrf
 
+            <form action="{{ isset($department)?route('departemnts.update',$department->id):route('departemnts.store') }}" method="POST" enctype="multipart/form-data" class="forms-sample">
+                @csrf
                 @if(isset($department))
                 @method('PUT')
                 @endif
 
                 <div class="form-group">
-                    <x-form.input type="text" name="name" placeholder="Name Department" lable="Name Patient" value="{{ old('name', $patient->name ?? '') }}" />
+                    <x-form.input type="text" name="name" placeholder="Name Department" lable="Name Patient" value="{{ old('name', $department->id?? '') }}" />
 
                 </div>
 

@@ -22,8 +22,8 @@ class MedicineFactory extends Factory
             'manufacturer'=>$this->faker->words(1,true),
             'date_created'=>$this->faker->date('Y-m-d','now'),
             'date_end'=>$this->faker->date('Y-m-d'),
-            'quantity'=>$this->faker->randomNumber(),
-            'price'=>$this->faker->randomNumber(),
+            'quantity'=>$this->faker->randomFloat(1,1,200),
+            'price'=>$this->faker->randomFloat(1,1,599),
 
         ];
     }

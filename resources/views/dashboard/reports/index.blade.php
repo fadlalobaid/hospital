@@ -14,17 +14,17 @@ Reports - index
 <div class="col-lg-12 grid-margin stretch-card">
 
     <div class="card">
-        {{--    --}}
+        {{-- --}}
 
-<x-alert type="success" />
-<x-alert type="info" />
-<x-alert type="danger" />
+        <x-alert type="success" />
+        <x-alert type="info" />
+        <x-alert type="danger" />
         <div class="card-body m-2">
-            <h4 class="card-title">Reports</h4>
-            <div class="d-grid gap-2 col-6 mx-auto">
-            <a class="nav-link btn btn-outline-success create-new-button" id="createbuttonDropdown"  aria-expanded="false" href="{{ route('reports.create') }}">
-                 <i class="mdi mdi-account-plus"></i> <span>Add Report</span>
-            </a>
+            <h3 class="d-inline">Reports Table</h3>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <a href="{{ route('doctors.create') }}" class="btn btn-success fs-5">
+                    + Add Doctor
+                </a>
             </div>
             </p>
             <div class="table-responsive">
@@ -36,7 +36,7 @@ Reports - index
                             <th> Report Date </th>
                             <th> Report Time </th>
                             <th>Report </th>
-                            <th  colspan="2"> Satting </th>
+                            <th colspan="2"> Satting </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -47,11 +47,11 @@ Reports - index
                             <td>{{ $report->patient->name ??''}}</td>
                             <td>{{$report->date_report }}</td>
                             <td> {{ $report->time_report}}</td>
-                            <td> {{ $report->report }}</td>
-                             <td >
-                             <a href="{{ route('reports.edit',$report->id) }}" class="btn btn-success m-1">
-                                <i class="mdi mdi-auto-fix"></i>
-                             </a>
+                            <td class="text-wrap"> {{ $report->report }}</td>
+                            <td>
+                                <a href="{{ route('reports.edit',$report->id) }}" class="btn btn-success m-1">
+                                    <i class="mdi mdi-auto-fix"></i>
+                                </a>
 
                                 <form action="{{ route('reports.destroy', $report->id) }}" method="post" class="m-1">
                                     @csrf
@@ -72,7 +72,7 @@ Reports - index
                 </table>
 
             </div>
-<div class="m-2" >{{ $reports->links() }}</div>
+            <div class="m-2">{{ $reports->withQueryString() }}</div>
         </div>
     </div>
 </div>

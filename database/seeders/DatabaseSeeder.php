@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-
+use App\Models\Appointment;
 use App\Models\Department;
 use App\Models\Doctor;
 use App\Models\Medicine;
@@ -30,9 +30,11 @@ class DatabaseSeeder extends Seeder
        Doctor::factory(20)->create();
        Patient::factory(40)->create();
        Medicine::factory(15)->create();
-       Prescription::factory(15)->create();
+      Prescription::factory(15)->create();
        Nurse::factory(30)->create();
        Report::factory(30)->create();
+       Appointment::factory( 30)->create();
+       Service::factory( 30)->create();
        User::factory(7)->create();
         // \App\Models\User::factory(10)->create();
     }

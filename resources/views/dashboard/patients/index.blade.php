@@ -40,10 +40,10 @@ Patients - index
                 <x-alert type="info" />
                 <x-alert type="danger" />
                 <div class="card-body">
-                    <h4 class="card-title">Inverse table</h4>
-                    <div class="d-grid gap-2 col-6 mx-auto">
-                        <a class="nav-link btn btn-outline-success create-new-button" id="createbuttonDropdown" aria-expanded="false" href="{{ route('patients.create') }}">
-                            <i class="mdi mdi-account-plus"></i> <span>Add Patiens</span>
+                    <h3 class="d-inline">Patients Table</h3>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <a href="{{ route('patients.create') }}" class="btn btn-success fs-5">
+                            + Add patient
                         </a>
                     </div>
                     </p>
@@ -102,7 +102,7 @@ Patients - index
                             </tbody>
                         </table>
                     </div>
-                    <div class="m-2">{{ $patients->links() }}</div>
+                    <div class="m-2">{{ $patients->withQueryString() }}</div>
                 </div>
 
         </div>

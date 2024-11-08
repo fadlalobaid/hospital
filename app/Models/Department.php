@@ -9,11 +9,10 @@ class Department extends Model
 {
     use HasFactory;
 
-
     protected $fillable = [
         'name',
         'description',
-        'status'
+        'status',
     ];
     public static function rules()
     {
@@ -24,23 +23,27 @@ class Department extends Model
             [
                 'required',
                 'min:12',
-                'max:350'
+                'max:350',
             ],
             'status' => 'in:active,inactive',
         ];
     }
-    public function doctors(){
-        return $this->hasMany(Doctor::class,'department_id','id');
+    public function doctors()
+    {
+        return $this->hasMany(Doctor::class, 'department_id', 'id');
     }
     public function nurses()
     {
-        return $this->hasMany(Nurse::class,'department_id','id');
+        return $this->hasMany(Nurse::class, 'department_id', 'id');
+    }
+    public function appoinments()
+    {
+        return $this->hasMany(Appointment::class, 'department_id', 'id');
     }
 
 
-
-    // public function services()
-    // {
-    //     return $this->hasMany(Service::class,'department_id','id');
-    // }
+    public function services()
+    {
+        return $this->hasMany(Service::class,'department_id','id');
+    }
 }

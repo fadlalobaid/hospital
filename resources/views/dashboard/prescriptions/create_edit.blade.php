@@ -24,9 +24,11 @@ Prescriptions - {{ isset($prescription)?'Edit':'Create' }}
         </div>
         @endif
         <div class="card-body">
-            <h4 class="card-title">Basic form elements</h4>
-            <div class="d-grid gap-2 col-6 mx-auto">
-                <a class="nav-link btn btn-outline-success create-new-button" id="createbuttonDropdown" aria-expanded="false" href="{{ route('prescriptions.index') }}" >prescriptions</a>
+            <h3 class="d-inline">Prescription</h3>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <a href="{{ route('prescriptions.index') }}" class="btn btn-success fs-5">
+                   prescription
+                </a>
             </div>
             <form action="{{isset($prescription)? route('prescriptions.update',$prescription->id):route('prescriptions.store') }}" method="POST" enctype="multipart/form-data" class="forms-sample">
                 @csrf

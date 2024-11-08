@@ -25,9 +25,11 @@ Department - {{ isset($nurse)?'Edit':'Create' }}
         </div>
         @endif
         <div class="card-body">
-            <h4 class="card-title">Basic form elements</h4>
-            <div class="d-grid gap-2 col-6 mx-auto">
-                <a class="nav-link btn btn-outline-success create-new-button" id="createbuttonDropdown" aria-expanded="false" href="{{ route('nurses.index') }}">Nurses</a>
+            <h3 class="d-inline">Nurse</h3>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <a href="{{ route('nurses.index') }}" class="btn btn-success fs-5">
+                   nurse
+                </a>
             </div>
             <form action="{{isset($nurse)? route('nurses.update',$nurse->id):route('nurses.store') }}" method="POST" enctype="multipart/form-data" class="forms-sample">
                 @csrf
