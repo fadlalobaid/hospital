@@ -76,47 +76,16 @@
                 </div>
             </div>
             <div class="row justify-content-between align-items-center">
-                <div class="col-lg-3 col-sm-12">
-                    <div class="single_feature">
-                        <div class="single_feature_part">
-                            <span class="single_feature_icon"><img src="{{ asset('front/img/icon/feature_1.svg') }}" alt=""></span>
-                            <h4>Better Future</h4>
-                            <p>Darkness multiply rule Which from without life creature blessed
-                                give moveth moveth seas make day which divided our have.</p>
-                        </div>
-                    </div>
-                    <div class="single_feature">
-                        <div class="single_feature_part">
-                            <span class="single_feature_icon"><img src="{{ asset('front/img/icon/feature_2.svg') }}" alt=""></span>
-                            <h4>Better Future</h4>
-                            <p>Darkness multiply rule Which from without life creature blessed
-                                give moveth moveth seas make day which divided our have.</p>
-                        </div>
-                    </div>
-                </div>
+
                 <div class="col-lg-4 col-sm-12">
                     <div class="single_feature_img">
                         <img src="{{ asset('front/img/service.png') }}" alt="">
                     </div>
                 </div>
-                <div class="col-lg-3 col-sm-12">
-                    <div class="single_feature">
-                        <div class="single_feature_part">
-                            <span class="single_feature_icon"><img src="{{ asset('front/img/icon/feature_1.svg') }}" alt=""></span>
-                            <h4>Better Future</h4>
-                            <p>Darkness multiply rule Which from without life creature blessed
-                                give moveth moveth seas make day which divided our have.</p>
-                        </div>
-                    </div>
-                    <div class="single_feature">
-                        <div class="single_feature_part">
-                            <span class="single_feature_icon"><img src="{{ asset('front/img/icon/feature_2.svg') }}" alt=""></span>
-                            <h4>Better Future</h4>
-                            <p>Darkness multiply rule Which from without life creature blessed
-                                give moveth moveth seas make day which divided our have.</p>
-                        </div>
-                    </div>
-                </div>
+                @foreach ($services as $service)
+                <x-card.services :service="$service" />
+                @endforeach
+
             </div>
         </div>
     </section>
@@ -132,45 +101,24 @@
                             <div class="col-xl-8">
                                 <h2>Our Depertment</h2>
                                 <div class="row">
+                                    @foreach ($departments as $deprtment)
                                     <div class="col-lg-6 col-sm-6">
-                                        <div class="single_our_depertment">
-                                            <span class="our_depertment_icon"><img src="{{ asset('front/img/icon/feature_2.svg') }}" alt=""></span>
-                                            <h4>Better Future</h4>
-                                            <p>Darkness multiply rule Which from without life creature blessed
-                                                give moveth moveth seas make day which divided our have.</p>
-                                        </div>
+                                        <x-card.department :deprtment="$deprtment" />
                                     </div>
-                                    <div class="col-lg-6 col-sm-6">
-                                        <div class="single_our_depertment">
-                                            <span class="our_depertment_icon"><img src="{{ asset('front/img/icon/feature_2.svg') }}" alt=""></span>
-                                            <h4>Better Future</h4>
-                                            <p>Darkness multiply rule Which from without life creature blessed
-                                                give moveth moveth seas make day which divided our have.</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 col-sm-6">
-                                        <div class="single_our_depertment">
-                                            <span class="our_depertment_icon"><img src="{{ asset('front/img/icon/feature_2.svg') }}" alt=""></span>
-                                            <h4>Better Future</h4>
-                                            <p>Darkness multiply rule Which from without life creature blessed
-                                                give moveth moveth seas make day which divided our have.</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 col-sm-6">
-                                        <div class="single_our_depertment">
-                                            <span class="our_depertment_icon"><img src="{{ asset('front/img/icon/feature_2.svg') }}" alt=""></span>
-                                            <h4>Better Future</h4>
-                                            <p>Darkness multiply rule Which from without life creature blessed
-                                                give moveth moveth seas make day which divided our have.</p>
-                                        </div>
-                                    </div>
+                                    @endforeach
                                 </div>
+                                <a href="{{ route('d.index') }}" class="d-inline alert alert-primary w-10">
+                                    View All Departments
+                                </a>
                             </div>
+
                         </div>
 
                     </div>
                 </div>
+
             </div>
+
         </div>
     </section>
     <!-- our depertment part end-->
@@ -181,98 +129,24 @@
             <div class="row justify-content-center">
                 <div class="col-xl-8">
                     <div class="section_tittle text-center">
-                        <h2> Experienced Doctors</h2>
+                        <h2> <a href="{{ route('doctor.index') }}">Experienced Doctors</a></h2>
                         <p>Face replenish sea good winged bearing years air divide wasHave night male also</p>
                     </div>
                 </div>
             </div>
             <div class="row">
+                @foreach ($doctors as $doctor)
                 <div class="col-sm-6 col-lg-3">
-                    <div class="single_blog_item">
-                        <div class="single_blog_img">
-                            <img src="{{asset ('front/img/doctor/doctor_1.png') }}" alt="doctor">
-                            <div class="social_icon">
-                                <ul>
-                                    <li><a href="#"> <i class="ti-facebook"></i> </a></li>
-                                    <li><a href="#"> <i class="ti-twitter-alt"></i> </a></li>
-                                    <li><a href="#"> <i class="ti-instagram"></i> </a></li>
-                                    <li><a href="#"> <i class="ti-skype"></i> </a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="single_text">
-                            <div class="single_blog_text">
-                                <h3>DR Adam Billiard</h3>
-                                <p>Heart specialist</p>
-                            </div>
-                        </div>
-                    </div>
+                    <x-card.doctor :doctor="$doctor" />
                 </div>
-                <div class="col-sm-6 col-lg-3">
-                    <div class="single_blog_item">
-                        <div class="single_blog_img">
-                            <img src="{{ asset('front/img/doctor/doctor_4.png') }}" alt="doctor">
-                            <div class="social_icon">
-                                <ul>
-                                    <li><a href="#"> <i class="ti-facebook"></i> </a></li>
-                                    <li><a href="#"> <i class="ti-twitter-alt"></i> </a></li>
-                                    <li><a href="#"> <i class="ti-instagram"></i> </a></li>
-                                    <li><a href="#"> <i class="ti-skype"></i> </a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="single_text">
-                            <div class="single_blog_text">
-                                <h3>DR Adam Billiard</h3>
-                                <p>Medicine specialist</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-lg-3">
-                    <div class="single_blog_item">
-                        <div class="single_blog_img">
-                            <img src="{{ asset('front/img/doctor/doctor_2.png') }}" alt="doctor">
-                            <div class="social_icon">
-                                <ul>
-                                    <li><a href="#"> <i class="ti-facebook"></i> </a></li>
-                                    <li><a href="#"> <i class="ti-twitter-alt"></i> </a></li>
-                                    <li><a href="#"> <i class="ti-instagram"></i> </a></li>
-                                    <li><a href="#"> <i class="ti-skype"></i> </a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="single_text">
-                            <div class="single_blog_text">
-                                <h3>DR Fred Macyard</h3>
-                                <p>CHeart specialist</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-lg-3">
-                    <div class="single_blog_item">
-                        <div class="single_blog_img">
-                            <img src="{{ ('front/img/doctor/doctor_3.png') }}" alt="doctor">
-                            <div class="social_icon">
-                                <ul>
-                                    <li><a href="#"> <i class="ti-facebook"></i> </a></li>
-                                    <li><a href="#"> <i class="ti-twitter-alt"></i> </a></li>
-                                    <li><a href="#"> <i class="ti-instagram"></i> </a></li>
-                                    <li><a href="#"> <i class="ti-skype"></i> </a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="single_text">
-                            <div class="single_blog_text">
-                                <h3>DR Justin Stuard</h3>
-                                <p>Heart specialist</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
+
             </div>
+
+
+
         </div>
+
     </section>
     <!--::doctor_part end::-->
 
@@ -334,7 +208,7 @@
     <!--::regervation_part end::-->
 
     <!--::blog_part start::-->
-    <section class="blog_part section_padding">
+    {{-- <section class="blog_part section_padding">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-xl-8">
@@ -348,42 +222,42 @@
                     <div class="single-home-blog">
                         <div class="card">
                             <img src="{{ asset('front/img/blog/blog_2.png') }}" class="card-img-top" alt="blog">
-                            <div class="card-body">
-                                <a href="blog.html">
-                                    <h5 class="card-title">First cattle which earth unto let health for
-                                        can get and see what you </h5>
-                                </a>
-                                <ul>
-                                    <li> <span class="ti-user"></span>Jhon mike</li>
-                                    <li> <span class="ti-bookmark"></span>Clinic, doctors</li>
-                                </ul>
+    <div class="card-body">
+        <a href="blog.html">
+            <h5 class="card-title">First cattle which earth unto let health for
+                can get and see what you </h5>
+        </a>
+        <ul>
+            <li> <span class="ti-user"></span>Jhon mike</li>
+            <li> <span class="ti-bookmark"></span>Clinic, doctors</li>
+        </ul>
 
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="single-home-blog">
-                        <div class="card">
-                            <img src="{{ ('front/img/blog/blog_3.png') }}" class="card-img-top" alt="blog">
-                            <div class="card-body">
-                                <a href="blog.html">
-                                    <h5 class="card-title">First cattle which earth unto let health for
-                                        can get and see what you </h5>
-                                </a>
-                                <ul>
-                                    <li> <span class="ti-user"></span>Jhon mike</li>
-                                    <li> <span class="ti-bookmark"></span>Clinic, doctors</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="single-home-blog">
+            <div class="card">
+                <img src="{{ ('front/img/blog/blog_3.png') }}" class="card-img-top" alt="blog">
+                <div class="card-body">
+                    <a href="blog.html">
+                        <h5 class="card-title">First cattle which earth unto let health for
+                            can get and see what you </h5>
+                    </a>
+                    <ul>
+                        <li> <span class="ti-user"></span>Jhon mike</li>
+                        <li> <span class="ti-bookmark"></span>Clinic, doctors</li>
+                    </ul>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+    </div>
+    </div>
+    </section> --}}
     <!--::blog_part end::-->
 
 
 </x-front-layout>
-{{--    --}}
+{{-- --}}

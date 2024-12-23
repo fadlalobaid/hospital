@@ -42,13 +42,13 @@
                         <div class="collapse navbar-collapse main-menu-item justify-content-center" id="navbarSupportedContent">
                             <ul class="navbar-nav align-items-center">
                                 <li class="nav-item active">
-                                    <a class="nav-link" href="index.html">Home</a>
+                                    <a class="nav-link" href="{{ route('home') }}">Home</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="about.html">about</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="Doctor.html">Doctors</a>
+                                    <a class="nav-link" href="{{ route('doctor.index') }}">Doctors</a>
                                 </li>
 
                                 <li class="nav-item dropdown">
@@ -57,7 +57,7 @@
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                         <a class="dropdown-item" href="services.html">services</a>
-                                        <a class="dropdown-item" href="dep.html">depertments</a>
+                                        <a class="dropdown-item" href="{{ route('d.index') }}">depertments</a>
                                         <a class="dropdown-item" href="elements.html">Elements</a>
                                     </div>
                                 </li>

@@ -3,48 +3,30 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Models\Department;
+use App\Models\Doctor;
+use App\Models\Service;
 
 class HomeController extends Controller
 {
 
     public function index()
     {
-return view('front.home');
+        $departments = Department::where('status', 'active')
+            ->latest()
+            ->take(4)
+            ->get();
+        $doctors = Doctor::latest()
+            ->take(4)
+            ->get();
+        $services=Service::latest()
+        ->take(5)
+        ->get();
+        return view('front.home', [
+            'departments' => $departments,
+            'doctors'=>$doctors,
+            'services'=>$services
+        ]);
     }
 
-
-    public function create()
-    {
-   
-    }
-
-
-    public function store(Request $request)
-    {
-
-    }
-
-
-    public function show($id)
-    {
-
-    }
-
-    public function edit($id)
-    {
-
-    }
-
-
-    public function update(Request $request, $id)
-    {
-
-    }
-
-
-    public function destroy($id)
-    {
-
-    }
 }
