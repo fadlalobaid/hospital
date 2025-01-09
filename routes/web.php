@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Dashboard\DoctorsController;
+use App\Http\Controllers\Front\Auth\TwoFactorAuthentcationController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-
+Route::get('/auth/user/2fa',[TwoFactorAuthentcationController::class, 'index'])->name('front.2fa');
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

@@ -43,7 +43,7 @@
                             <ul class="navbar-nav align-items-center">
 
                                 <li class="nav-item active">
-                                    <a class="nav-link text-success" href="{{ route('home') }}">{{ Auth::user()->name }}</a>
+                                    <a class="nav-link text-success" href="{{ route('front.2fa') }}">{{ Auth::user()->name }}</a>
                                 </li>
                                 <li class="nav-item active">
                                     <a class="nav-link" href="{{ route('home') }}">Home</a>

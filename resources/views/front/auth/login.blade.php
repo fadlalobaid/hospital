@@ -96,29 +96,40 @@
     </section>
     <!-- breadcrumb start-->
 
+    <section class="shop login section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 offset-lg-3 col-12">
+
+                    @if($errors->has(config('fortify.username')))
+                    <div class="alert alert-danger ">
+                        {{ $errors->first(config('fortify.username')) }}
+                    </div>
+                    @endif
 
 
-    @if($errors->has(config('fortify.username')))
-    <div class="alert alert-danger ">
-        {{ $errors->first(config('fortify.username')) }}
-    </div>
-    @endif
+                    <form action="{{ 'login' }}" class="form-gruop p-5 mx-6" method="POST">
+                        @csrf
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Email address</label>
+                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="{{ config('fortify.username')}}">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">Password</label>
+                            <input type="password" class="form-control" name="password" id="exampleInputPassword1">
+                        </div>
 
 
-    <form action="{{ 'login' }}" class="form-gruop p-5 mx-6" method="POST">
-        @csrf
-        <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Email address</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="{{ config('fortify.username')}}">
+                        <div class="d-inline form-group login-btn">
+                            <button type="submit" class="genric-btn primary">Login</button>
+                        </div>
+                        @if (Route::has('register'))
+                        <a href="{{route('register')}}" class="genric-btn info ">REGISTER</a>
+
+                        @endif
+                    </form>
+                </div>
+            </div>
         </div>
-        <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Password</label>
-            <input type="password" class="form-control" name="password" id="exampleInputPassword1">
-        </div>
-
-
-
-        <button type="submit" class="genric-btn primary">Login</button>
-    </form>
-
+    </section>
 </x-front-layout>
