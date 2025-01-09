@@ -27,7 +27,7 @@ hospital
             <div class="card-body">
                 <h5 class="card-title">DOCTORS</h5>
                 <p class="card-text">Managing the doctors present in the hospital</p>
-                <a href="{{ route('doctor.index') }}" class="btn btn-inverse-success">Click here</a>
+                <a href="{{ route('doctors.index') }}" class="btn btn-inverse-success">Click here</a>
             </div>
         </div>
 

@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 //
 Route::group(
     [
-        'middleware' => ['auth:admin']
+        'middleware' => ['auth']
     ],
     function () {
         Route::get('/dashboard/index',[DashboardController::class,'index'])->name('dashboard.index');

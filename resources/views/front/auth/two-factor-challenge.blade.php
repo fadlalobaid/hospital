@@ -29,13 +29,13 @@
                             {{-- code  --}}
                             <div class="col-12">
                                 <div class="form-group">
-                                    <input type="text" name="code"  class="form-control" lable="2FA Code" >
+                                    <input type="text" name="code"  class="form-control" placeholder="2FA Code" >
                                 </div>
                             </div>
                             {{-- recovery_code  --}}
                             <div class="col-12">
                                 <div class="form-group">
-                                    <input type="text" name="recovery_code" class="form-control" lable="Recovery Code " />
+                                    <input type="text" name="recovery_code" class="form-control" placeholder="Recovery Code " />
                                 </div>
                             </div>
                             {{-- submit  --}}
