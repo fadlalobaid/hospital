@@ -56,7 +56,7 @@ class DepartmentsController extends Controller
     {
         return view('dashboard.departments.create_edit', [
             'department' => $department,
-        ]); 
+        ]);
     }
 
     public function update(Request $request, $id)

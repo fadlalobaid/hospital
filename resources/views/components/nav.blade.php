@@ -1,19 +1,19 @@
     <nav class="sidebar sidebar-offcanvas" id="sidebar">
     <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
-        <a class="sidebar-brand brand-logo" href="index.html"><img src="{{ asset('assets/images/hospital1.svg') }}" alt="logo" /></a>
-        <a class="sidebar-brand brand-logo-mini" href="index.html"><img src="{{asset ('assets/images/hospital1.svg') }}" alt="logo" /></a>
+        <a class="sidebar-brand brand-logo" href="{{ route('home') }}"><img src="{{ asset('front/img/favicon.png') }}" style="width:40px" alt="logo" /></a>
+        <a class="sidebar-brand brand-logo-mini" href="index.html"><img src="{{asset ('front/img/favicon.png') }}" style="width:40px" alt="logo" /></a>
     </div>
     <ul class="nav">
         <li class="nav-item profile">
             <div class="profile-desc">
                 <div class="profile-pic">
                     <div class="count-indicator">
-                        <img class="img-xs rounded-circle " src="{{asset ('assets/images/fadllogo.png')}}" alt="">
+                        <img class="img-xs rounded-circle " src="{{asset ('assets/images/doctor.jpeg')}}" alt="">
                         <span class="count bg-danger"></span>
                     </div>
                     <div class="profile-name">
                         <h5 class="mb-0 font-weight-normal">{{ config('app.name') }}</h5>
-                        <span>Gold Member</span>
+                        <span>Fadl Alobaid</span>
                     </div>
                 </div>
                 <a href="#" id="profile-dropdown" data-bs-toggle="dropdown"><i class="mdi mdi-dots-vertical"></i></a>
@@ -67,7 +67,7 @@
         @foreach($items as $item)
         <li class="nav-item menu-items">
             <a href="{{ route($item['route']) }}" class="nav-link
-            {{ $item['route']==$active ? 'bg-dark bg-gradient':'' }}
+            {{ $item['route']==$active ? 'bg-dark ':'' }}
             ">
                 <span class="menu-icon">
                     <i class="{{ $item['icon'] }}"></i>

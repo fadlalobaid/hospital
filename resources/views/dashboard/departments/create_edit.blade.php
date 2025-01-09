@@ -31,7 +31,7 @@ Department - {{ isset($department)?'Edit':'Create' }}
                 </a>
             </div>
 
-            <form action="{{ isset($department)?route('departemnts.update',$department->id):route('departemnts.store') }}" method="POST" enctype="multipart/form-data" class="forms-sample">
+            <form action="{{ isset($department)? route('departemnts.update',$department->id):route('departemnts.store') }}" method="POST" enctype="multipart/form-data" class="forms-sample">
                 @csrf
                 @if(isset($department))
                 @method('PUT')

@@ -6,14 +6,13 @@ Appointment - index
 @parent
 <li class="breadcrumb-item active" aria-current="page">Appointment</li>
 <li class="breadcrumb-item active" aria-current="page">index</li>
-
 @endsection
 @section('content')
 
 
 <div class="col-lg-12 grid-margin stretch-card">
     <div class="card">
-        {{--  <div class="m-3 ">
+        <div class="m-3 ">
             <form action="{{ URL::current() }}" class="row g-3 m-2">
                 <div class="form-group col-auto">
                     <x-form.input type="text" name="name" placeholder="Name appointment" :value="request('name')" />
@@ -29,7 +28,7 @@ Appointment - index
                 </div>
                 <button type="submit" class="btn btn-outline-secondary  col-auto m-3">Filter</button>
             </form>
-        </div>  --}}
+        </div>
         <div class="card">
             <x-alert type="success" />
             <x-alert type="info" />
@@ -66,7 +65,7 @@ Appointment - index
                             <tr>
                                 <td>{{ $appointment->id }}</td>
                                 <td> {{ $appointment->departments->name }}</td>
-                                <td> {{ $appointment->patients->name }}</td>
+                                <td> {{ $appointment->patient_name}}</td>
                                 <td > {{ $appointment->doctors->name }}</td>
                                 <td> {{ $appointment->time_appointment }} </td>
                                 <td> {{ $appointment->date_appointment }} </td>

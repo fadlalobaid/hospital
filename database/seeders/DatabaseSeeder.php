@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Appointment;
 use App\Models\Department;
+use App\Models\Admin;
 use App\Models\Doctor;
 use App\Models\Medicine;
 use App\Models\Nurse;
@@ -26,6 +27,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call(UserSeeder::class);
+       Admin::factory(5)->create();
        Department::factory(6)->create();
        Doctor::factory(20)->create();
        Patient::factory(40)->create();

@@ -12,7 +12,7 @@
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing
                                 elit sed do eiusmod tempor incididunt ut labore et dolore
                                 magna aliqua. Quis ipsum suspendisse ultrices gravida.Risus cmodo viverra </p>
-                            <a href="#" class="btn_2">Make an appointment</a>
+                            <a href="{{ route('app.create') }}" class="btn_2">Make an appointment</a>
 
                         </div>
                     </div>
@@ -107,9 +107,11 @@
                                     </div>
                                     @endforeach
                                 </div>
-                                <a href="{{ route('d.index') }}" class="d-inline alert alert-primary w-10">
+                              <div class="d-grid gap-2">
+                                <a href="{{ route('d.index') }}" class="btn d-inline alert alert-primary">
                                     View All Departments
                                 </a>
+                               </div>
                             </div>
 
                         </div>
@@ -150,49 +152,80 @@
     </section>
     <!--::doctor_part end::-->
 
-    <!--::regervation_part start::-->
+    <!--::regervation_part start::--> 
+
     <section class="regervation_part section_padding">
         <div class="container">
             <div class="row align-items-center regervation_content">
                 <div class="col-lg-7">
                     <div class="regervation_part_iner">
-                        <form>
+                      
+                        <form action="{{ route('app.store') }}" method="POST" enctype="multipart/form-data" class="forms-sample">
+                            @csrf
                             <h2>Make an Appointment</h2>
+                            <x-alert type="success" />
+                            <x-alert type="info" />
+                            <x-alert type="danger" />
                             <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <input type="email" class="form-control" id="inputEmail4" placeholder="Name">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <input type="password" class="form-control" id="inputPassword4" placeholder="Email address">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <select class="form-control" id="Select">
-                                        <option value="1" selected>Select service</option>
-                                        <option value="2">Name of service</option>
-                                        <option value="3">Name of service</option>
-                                        <option value="4">Name of service</option>
-                                        <option value="5">Name of service</option>
+
+
+                                <div class="form-group  col-md-6">
+                                    <label>Department</label>
+                                    <select name="department_id" class="form-control">
+                                        @foreach ($departments as $department)
+                                        <option value="{{ $department->id }}" @selected(old('department_id', $appointment->department_id ?? '') == $department->id)>
+                                            {{ $department->name }}
+                                        </option>
+                                        @endforeach
                                     </select>
+                                </div>
+
+
+
+
+                                <div class="form-group  col-md-6">
+                                    <label>Doctor</label>
+                                    <select name="doctor_id" class="form-control">
+                                        @foreach ($doctors as $doctor)
+                                        <option value="{{ $doctor->id }}" @selected(old('doctor_id', $appointment->doctor_id ?? '') == $department->id)>
+                                            {{ $doctor->name }}
+                                        </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+
+
+                                <div class="form-group col-md-6">
+                                    <input type="text" class="form-control" name="patient_name" placeholder="Name">
+                                </div>
+
+
+                                <div class="form-group col-md-6">
+                                    <select class="form-control" id="Select" name="status">
+                                        <option value="status" selected>STATUS</option>
+                                        <option value="confirmed" selected>confirmed</option>
+                                        <option value="pending">pending</option>
+                                        <option value="cancelled">cancelled</option>
+
+                                    </select>
+                                </div>
+
+
+                                <div class="form-group time_icon col-md-6">
+                                    <x-form.input type="time" name="time_appointment" placeholder="time" value="{{ old('time_appointment', $appointment->time_appointment ?? '') }}" />
                                 </div>
                                 <div class="form-group time_icon col-md-6">
-                                    <select class="form-control" id="Select2">
-                                        <option value="" selected>Time</option>
-                                        <option value="1">8 AM TO 10AM</option>
-                                        <option value="1">10 AM TO 12PM</option>
-                                        <option value="1">12PM TO 2PM</option>
-                                        <option value="1">2PM TO 4PM</option>
-                                        <option value="1">4PM TO 6PM</option>
-                                        <option value="1">6PM TO 8PM</option>
-                                        <option value="1">4PM TO 10PM</option>
-                                        <option value="1">10PM TO 12PM</option>
-                                    </select>
+                                    <x-form.input type="date" name="date_appointment" placeholder="date" value="{{ old('date_appointment', $appointment->date_appointment ?? '') }}" />
                                 </div>
+
+
                                 <div class="form-group col-md-12">
-                                    <textarea class="form-control" id="Textarea" rows="4" placeholder="Your Note "></textarea>
+                                    <x-form.textarea label="notes" name="notes" rows="10" cols="30" />
                                 </div>
                             </div>
                             <div class="regerv_btn">
-                                <a href="#" class="btn_2">Make an Appointment</a>
+                                <button type="submit" class="btn btn-primary">Make an Appointment</button>
                             </div>
                         </form>
                     </div>

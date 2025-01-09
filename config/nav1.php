@@ -3,12 +3,12 @@ return[
    [
     'name'=>'Department',
     'route'=>'departemnts.index',
-    'icon'=>'mdi mdi-file-document-box'
+    'icon'=>'mdi mdi-hospital-building'
    ],
    [
     'name'=>'Doctors',
     'route'=>'doctors.index',
-    'icon'=>'mdi mdi-account-multiple'
+    'icon'=>'mdi mdi-doctor'
    ],
    [
     'name'=>'Patents',
